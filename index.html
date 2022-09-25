@@ -71,6 +71,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-FragmentManager" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/24/FragmentManager/" class="article-date">
+  <time class="dt-published" datetime="2022-09-24T08:38:21.000Z" itemprop="datePublished">2022-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/24/FragmentManager/">FragmentManager</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>获取FragmentManager</li>
+</ol>
+<p>只要是继承 FragmentActivity 或者 FragmentActivity 本身，都可通过 getSupportFragmentManager() 方法获取到 FragmentManager（后面简称 FM）。</p>
+<p>若是 Fragment 嵌套 Fragment 的情况，父 Fragment 可通过 getChildFragmentManager() 方法获取 FM 来管理子 Fragment，同样，子 Fragment 也可通过 getParentFragmentManager() 来获取 FM。</p>
+<p><img src="/FragmentManager.assets/image-20220924195332457.png" alt="image-20220924195332457"></p>
+<ol start="2">
+<li>理解FragmentTransaction</li>
+</ol>
+<p>根据用户操作，FragmentManager 可以对 Fragment 进行添加，移除，替换等操作。而这一系列的操作都是通过 transaction 来完成的，通过 FragmentTransaction 类提供的 API 我们可以指定 transaction 里的操作。例如，将多个操作放在一个 transaction 里，（一个 transaction 可以添加或替换多个 fragments）。</p>
+<p>通过 FragmentManager 维护的 back stack 来存储 transactions，我们就可以像 Activities 那样做返回操作了，但前提是要调用 addToBackStack() 方法，不然是不会保存的。</p>
+<p><strong>如何获取到FragmentTransaction类的实例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FragmentManager</span> <span class="variable">fm</span> <span class="operator">=</span> getSupportFragmentManager();</span><br><span class="line"><span class="type">FragmentTransaction</span> <span class="variable">ft</span> <span class="operator">=</span> fm.beginTransaction();</span><br></pre></td></tr></table></figure>
+
+<p>transaction的最后一步必须是commit操作，commit()方法告诉FragmentManager完成了transaction的所有操作，要注意的是，commit()方法调用后，不会立即生效，而是要取决于主线程的任务安排。</p>
+<ol start="3">
+<li>FragmentTransaction具体操作方法</li>
+</ol>
+<ul>
+<li>向FragmentManager中添加fragment , 调用<strong>add(),</strong> 添加之后fragment会走到resume的状态，即可见可操作</li>
+<li>从宿主中移除fragment，调用**remove()**，</li>
+</ul>
+<p>​		要移除fragment,首先要获取到具体fragment对象实例，可通过FragmentManager调用findFragmentById() 或者 findFragmentByTag() ，移除之后 fragment 会走到 Destroy 的状态，即销毁。</p>
+<ul>
+<li>替换fragment,调用**replace()**，等价于先调remove(),再调add()。</li>
+<li>展示或隐藏fragments，调用<strong>show()&#x2F;hide()，</strong>通过这两个方法可以在不改变fragment生命周期的前提下展示或隐藏fragment布局</li>
+<li>解绑或关联fragments,调用**detach()&#x2F;attach()**，通过这两个方法可以将fragment解绑&#x2F;关联宿主，这样会造成fragment进入STOP状态或重走onCreate等生命周期方法。注意，不要再同一个transaction里调用detach()和attch(),这样会相互抵消没效果。</li>
+</ul>
+<p>总的来说，FragmentManager 想要对fragments 进行操作，需要通过FragmentTransaction来完成，而FragmentTransaction提供的一些方法需要注意使用条件，而FragmentManager管理的Back Stack似乎是以FragmentTransaction为维度进行维护的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/24/FragmentManager/" data-id="cl8goh0wn0001ism66mula2id" data-title="FragmentManager" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Android-弱引用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" class="article-date">
@@ -118,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" data-id="cl8eb7hk10000fkm62fjvdk2u" data-title="Android 弱引用的应用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" data-id="cl8goh0wk0000ism66a0zdgpb" data-title="Android 弱引用的应用" class="article-share-link">Share</a>
       
       
       
@@ -171,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl8eb7hkb0003fkm62ate2uj4" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl8goh0wq0003ism61f2p3rxq" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -226,6 +293,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/09/24/FragmentManager/">FragmentManager</a>
+          </li>
         
           <li>
             <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/">Android 弱引用的应用</a>

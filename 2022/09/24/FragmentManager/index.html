@@ -4,19 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>Hello World | Hexo</title>
+  <title>FragmentManager | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="获取FragmentManager  只要是继承 FragmentActivity 或者 FragmentActivity 本身，都可通过 getSupportFragmentManager() 方法获取到 FragmentManager（后面简称 FM）。 若是 Fragment 嵌套 Fragment 的情况，父 Fragment 可通过 getChildFragmentManager()">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/09/21/hello-world/index.html">
+<meta property="og:title" content="FragmentManager">
+<meta property="og:url" content="http://example.com/2022/09/24/FragmentManager/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="获取FragmentManager  只要是继承 FragmentActivity 或者 FragmentActivity 本身，都可通过 getSupportFragmentManager() 方法获取到 FragmentManager（后面简称 FM）。 若是 Fragment 嵌套 Fragment 的情况，父 Fragment 可通过 getChildFragmentManager()">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-21T08:15:17.029Z">
-<meta property="article:modified_time" content="2022-09-21T08:15:17.029Z">
+<meta property="og:image" content="http://example.com/FragmentManager.assets/image-20220924195332457.png">
+<meta property="article:published_time" content="2022-09-24T08:38:21.000Z">
+<meta property="article:modified_time" content="2022-09-24T12:45:03.870Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/FragmentManager.assets/image-20220924195332457.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -73,10 +75,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-FragmentManager" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/09/21/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-09-21T08:15:17.029Z" itemprop="datePublished">2022-09-21</time>
+    <a href="/2022/09/24/FragmentManager/" class="article-date">
+  <time class="dt-published" datetime="2022-09-24T08:38:21.000Z" itemprop="datePublished">2022-09-24</time>
 </a>
     
   </div>
@@ -87,7 +89,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Hello World
+      FragmentManager
     </h1>
   
 
@@ -95,24 +97,40 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <ol>
+<li>获取FragmentManager</li>
+</ol>
+<p>只要是继承 FragmentActivity 或者 FragmentActivity 本身，都可通过 getSupportFragmentManager() 方法获取到 FragmentManager（后面简称 FM）。</p>
+<p>若是 Fragment 嵌套 Fragment 的情况，父 Fragment 可通过 getChildFragmentManager() 方法获取 FM 来管理子 Fragment，同样，子 Fragment 也可通过 getParentFragmentManager() 来获取 FM。</p>
+<p><img src="/FragmentManager.assets/image-20220924195332457.png" alt="image-20220924195332457"></p>
+<ol start="2">
+<li>理解FragmentTransaction</li>
+</ol>
+<p>根据用户操作，FragmentManager 可以对 Fragment 进行添加，移除，替换等操作。而这一系列的操作都是通过 transaction 来完成的，通过 FragmentTransaction 类提供的 API 我们可以指定 transaction 里的操作。例如，将多个操作放在一个 transaction 里，（一个 transaction 可以添加或替换多个 fragments）。</p>
+<p>通过 FragmentManager 维护的 back stack 来存储 transactions，我们就可以像 Activities 那样做返回操作了，但前提是要调用 addToBackStack() 方法，不然是不会保存的。</p>
+<p><strong>如何获取到FragmentTransaction类的实例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FragmentManager</span> <span class="variable">fm</span> <span class="operator">=</span> getSupportFragmentManager();</span><br><span class="line"><span class="type">FragmentTransaction</span> <span class="variable">ft</span> <span class="operator">=</span> fm.beginTransaction();</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>transaction的最后一步必须是commit操作，commit()方法告诉FragmentManager完成了transaction的所有操作，要注意的是，commit()方法调用后，不会立即生效，而是要取决于主线程的任务安排。</p>
+<ol start="3">
+<li>FragmentTransaction具体操作方法</li>
+</ol>
+<ul>
+<li>向FragmentManager中添加fragment , 调用<strong>add(),</strong> 添加之后fragment会走到resume的状态，即可见可操作</li>
+<li>从宿主中移除fragment，调用**remove()**，</li>
+</ul>
+<p>​		要移除fragment,首先要获取到具体fragment对象实例，可通过FragmentManager调用findFragmentById() 或者 findFragmentByTag() ，移除之后 fragment 会走到 Destroy 的状态，即销毁。</p>
+<ul>
+<li>替换fragment,调用**replace()**，等价于先调remove(),再调add()。</li>
+<li>展示或隐藏fragments，调用<strong>show()&#x2F;hide()，</strong>通过这两个方法可以在不改变fragment生命周期的前提下展示或隐藏fragment布局</li>
+<li>解绑或关联fragments,调用**detach()&#x2F;attach()**，通过这两个方法可以将fragment解绑&#x2F;关联宿主，这样会造成fragment进入STOP状态或重走onCreate等生命周期方法。注意，不要再同一个transaction里调用detach()和attch(),这样会相互抵消没效果。</li>
+</ul>
+<p>总的来说，FragmentManager 想要对fragments 进行操作，需要通过FragmentTransaction来完成，而FragmentTransaction提供的一些方法需要注意使用条件，而FragmentManager管理的Back Stack似乎是以FragmentTransaction为维度进行维护的</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl8goh0wq0003ism61f2p3rxq" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/FragmentManager/" data-id="cl8goh0wn0001ism66mula2id" data-title="FragmentManager" class="article-share-link">Share</a>
       
       
       
@@ -122,15 +140,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android 弱引用的应用
-        
-      </div>
-    </a>
   
+    <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android 弱引用的应用</div>
+    </a>
   
 </nav>
 
