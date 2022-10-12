@@ -96,11 +96,100 @@
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>关于 EventBus 在开发中经常会选择使用它来进行模块间通信、解耦。平常使用这个库只是很浅显的操作三部曲，register，post，unregister。来达到开发目的。始终有种不明确，模糊的操作感。因此准备对EventBus进行一个深入，全面的理解，消除模糊，片面感，让以后在使用这个库的时候，有更好的掌握和使用。并记录下来，方便以后查阅。关于EventBus会分两章进行记录，本篇文章，是对EventBus的使用做一个全面的介绍，另一篇文章则会对EventBus库的源码进行分析，看看他的实现原理是什么样的。</p>
 <h2 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h2><p>EventBus 是一个开源库，它利用发布&#x2F;订阅者者模式来对项目进行解耦。它可以利用很少的代码，来实现多组件间通信。android的组件间通信，我们不由得会想到handler消息机制和广播机制，通过它们也可以进行通信，但是使用它们进行通信，代码量多，组件间容易产生耦合引用。关于EventBus的工作模式，这里引用一张官方图帮助理解。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202210091017217.png"></p>
+<p>Publisher（发布者）通过post（）方法，把Event事件发布出去，Subscriber（订阅者）在onEvent（）方法中接收事件。</p>
+<p>为什么会选择用EventBus来做通信</p>
+<ul>
+<li>简化组件间交流的方式</li>
+<li>对事件通信双方进行解耦</li>
+<li>可以灵活方便的指定工作线程，通过ThreadMode</li>
+<li>速度快、性能好</li>
+<li>库比较小、不占内存</li>
+<li>使用这个库的app多，有权威性</li>
+<li>功能多，使用方便</li>
+</ul>
+<h1 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h1><p>EventBus库中最重要的三个点，分别是subscriber（订阅者），事件（消息），publisher（发布者）。主要理解这三者的关系即可。</p>
+<p>subscriber —-&gt; EventBus 的register方法，传入的<strong>object对象</strong></p>
+<p>事件(Event) —-&gt; EventBus的post方法，传入的类型</p>
+<p>publisher（发布者）—-&gt; EventBus的post方法</p>
+<hr>
+<ol>
+<li>创建一个事件类型，消息事件类型可以是string ，int 等常见类，也可以是自己自定义一个事件类，方便管理，演示创建一个EventMessage事件类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EventMessage</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> type;</span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">EventMessage</span><span class="params">(<span class="type">int</span> type, String message)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.type = type;</span><br><span class="line">        <span class="built_in">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;type=&quot;</span>+type+<span class="string">&quot;--message= &quot;</span>+message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getType</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setType</span><span class="params">(<span class="type">int</span> type)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.type = type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMessage</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在需要订阅事件的模块中，注册eventbus</li>
+</ol>
+<p>MainActivity.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onStart</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onStart();</span><br><span class="line">        EventBus.getDefault().register(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onStop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onStop();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDestroy</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onDestroy();</span><br><span class="line">        EventBus.getDefault().unregister(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>关于EventBus的注册问题</p>
+<ol>
+<li>注册完了，在不用的时候千万别忘了unregister</li>
+<li>不能重复注册，注册之后，没有unregister，然后又注册一次</li>
+<li>register与unregister的时间根据实际需求来把控，官方的例子是在onStart（）回调方法进行注册，onStop()回调方法进行unregister（），这边根据需求做了改动。</li>
+</ol>
+<p>在需要接收事件的类中进行好register之后，需要在该类中创建一个方法来接收事件消息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.MAIN)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceiveMsg</span><span class="params">(EventMessage message)</span> &#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onReceiveMsg: &quot;</span> + message.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>创建的这个方法是有要求的。要求有如下几点。</p>
+<p><strong>1. 该方法有且只有一个参数</strong></p>
+<p><strong>2. 该方法必须是public修饰符修饰，不能用static关键字修饰，不能是抽象的 abstract</strong></p>
+<p><strong>3. 该方法需要用@Subscribe 注解进行修饰</strong></p>
+<p>关于Subscribe注解的介绍，将在后面结合实例进行讲解。</p>
+<ol start="3">
+<li>在需要发送事件的地方，调用EventBus的post（Object event）,postSticky(Object event)来通知订阅者。</li>
+</ol>
+<p>SecondActivity.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> View.<span class="type">OnClickListener</span> <span class="variable">mSendListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">            Log.e(TAG, <span class="string">&quot;onClick: &quot;</span> );</span><br><span class="line">            <span class="type">EventMessage</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventMessage</span>(<span class="number">1</span>,<span class="string">&quot;Hello MainActivity&quot;</span>);</span><br><span class="line">            EventBus.getDefault().post(msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>该例子中，使用EventBus.getDefault()方法，该方法会获取一个单例。所以才可以随时使用，如果不是用这种单例模式，需要想办法把订阅者(Subscriber)注册时用的EventBus的引用传给需要发送事件的模块中，简而言之就是Subscriber用的eventbus 和 post方法需要的eventbus需要是同一个eventbus。</p>
+<p>关于EventBus的基本使用，主要就是三个部分，一个部分是Subscriber,需要在Subscriber类中进行register和unregister操作。一部分是在Subscriber中需要创建一个方法来接收事件信息，最后一部分就是在需要发送事件的环境使用post方法来发送事件信息。这三部分中所用到的eventBus实例得要是同一个实例</p>
+<h2 id="Subscribe-注解介绍"><a href="#Subscribe-注解介绍" class="headerlink" title="Subscribe 注解介绍"></a>Subscribe 注解介绍</h2><p>@Subscribe是EventBus自定义的一种注解，他可接收三个参数，ThreadMode、boolean sticky、int  priority。</p>
+<p>所以上面的接收Event方法的代码，完整版的可以这样写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.MAIN,sticky = true,priority = 1)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceiveMsg</span><span class="params">(EventMessage message)</span> &#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onReceiveMsg: &quot;</span> + message.toString());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这三个参数可以根据需要选择是否使用</p>
+<p>threadMode 是用来决定onReceiveMsg将在哪种线程环境下被调用。EventBus一共有5种Thread mode</p>
+<p>POSTING : 这是EventBus的默认模式，表示post事件是什么线程，onReceiveMsg接收事件方法就在同样的线程环境中执行代码。例如：</p>
+<p>订阅处</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe()</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceiveMsg</span><span class="params">(EventMessage message)</span> &#123;</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onReceiveMsg: &quot;</span> + message.toString());</span><br><span class="line">        Log.e(TAG, <span class="string">&quot;onReceiveMsg: current thread name =&quot;</span>+Thread.currentThread().getName() );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>发布处</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> View.<span class="type">OnClickListener</span> <span class="variable">mSendListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">            Log.e(TAG, <span class="string">&quot;onClick: &quot;</span> );</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> Thread.currentThread().getName();</span><br><span class="line">                    Log.e(TAG, <span class="string">&quot;run: thread  name = &quot;</span>+name );</span><br><span class="line">                    <span class="type">EventMessage</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventMessage</span>(<span class="number">1</span>,<span class="string">&quot;Hello MainActivity&quot;</span>);</span><br><span class="line">                    EventBus.getDefault().post(msg);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202210091433474.png" alt="image-20221009143324621"></p>
+<p>我们看到，他们所处的线程环境是一样的。</p>
+<p>这种模式，适合使用在执行简单任务的情况下，不需要复杂运算，因为这种模式不需要做线程切换的判断逻辑，直接分发至相同的线程环境，速度快，耗时少、</p>
+<p><strong>MAIN：关于MAIN这种线程模式，可以和MAIN_ORDERED一起讨论，他们都是表示，无论事件发布在什么线程，事件接收都是在主线程执行。那MAIN模式和MAIN_ORDERED模式区别在什么地方呢？</strong></p>
+<p>区别在于，对于MAIN模式，如果事件发布者post事件也是在主线程的话，会<strong>阻塞post事件</strong>所在的线程。意思是连续post多个事件，只有接收事件方法执行完，才能post下一个事件</p>
+<p><strong>post(1) ——&gt; onReceiveMsg(1) ———&gt;post(2)———&gt;onReceiveMsg(2)———&gt;post(3)————&gt;onReceiveMsg(3)</strong></p>
+<p>如果事件发布者post事件不在主线程的话，连续post多个事件，同是在主线程是接收时间是耗时操作的话，执行流程会是<strong>非阻塞的</strong>（non-blocking）</p>
+<p><strong>post（1）——&gt;post（2）——&gt;psot(3)———&gt;onReceiveMsg(3)</strong></p>
+<p><strong>或者</strong></p>
+<p><strong>post（1）——&gt;post（2）——&gt;psot(3)———&gt;onReceiveMsg(2)——&gt;onReceiveMsg(3)</strong></p>
+<p><strong>那对于MAIN_ORDERED模式无论事件发布者post在什么线程环境，他的执行流程是都非阻塞的（non-blocking），和MAIN模式 下，post环境不是主线程的执行流程一样。</strong></p>
+<p>BACKGROUND：该模式下的时间发布者post线程环境与事件接收onReceiveMsg方法的线程环境关系如下：</p>
+<p>post发布环境是主线程的话，事件接收处理的环境是一个子线程。</p>
+<p>post发布环境是子线程的话，事件接收处理环境和post发布环境一样。</p>
+<p>ASYNC：该模式表示，无论post环境是什么线程，事件接收处理环境都是子线程。</p>
+<p>以上就是EventBus五种线程模式的解读。上面说了Subscriber注解的ThreadMode参数的含义。接着我们说另外两种参数的含义。</p>
+<h2 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h2><p>sticky是一个boolean型的参数，默认值是false，表示不启用sticky特性。</p>
+<p>sticky特性是什么呢？ </p>
+<p>我们之前说EventBus事件传递的例子时，都是对订阅者进行先注册的，然后再post事件，那sticky的作用是在先post事件，后对订阅者注册这种开发场景支持的。</p>
+<p>举个例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> View.<span class="type">OnClickListener</span> <span class="variable">mGoListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onClick: post&quot;</span>);</span><br><span class="line">           <span class="type">EventMessage</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EventMessage</span>(<span class="number">233</span>, <span class="string">&quot;post message before&quot;</span>);</span><br><span class="line">           EventBus.getDefault().postSticky(message);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> View.<span class="type">OnClickListener</span> <span class="variable">mRegisterListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">           Log.e(TAG, <span class="string">&quot;onClick: start register&quot;</span> );</span><br><span class="line">           EventBus.getDefault().register(MainActivity.<span class="built_in">this</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>首先点击触发go事件，通过postSticky（）发送一个事件，然后再通过点击触发register事件，对Subscriber进行注册。结果log如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2018-12-08 10:40:54.444 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onClick: post</span><br><span class="line">2018-12-08 10:40:57.365 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onClick: start register</span><br><span class="line">2018-12-08 10:40:57.369 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onReceiveMsg: type=233--message= post message before</span><br><span class="line">2018-12-08 10:40:57.369 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onReceiveMsg: current thread name =main</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="priority"><a href="#priority" class="headerlink" title="priority"></a>priority</h2><p>该参数是int型，默认值是0，比较好理解，就像他的参数名所表示的那样，优先级。值越高，越先接收到事件，不过这里要注意一个问题，那就是优先级的比较前提是在post事件发布，onReceiveMsg事件接收处理这两方的线程环境相同的前提下，才有意义。同是与priority相配合使用的一个方法是cancelEventDelivery.关于它们的使用就不在演示，比较简单。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/08/EventBus/" data-id="cl90ptmzf0001akm6133yfrsl" data-title="EventBus" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/08/EventBus/" data-id="cl95g5st70003hcm64ddk7d7i" data-title="EventBus" class="article-share-link">Share</a>
       
       
       
@@ -144,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" data-id="cl90ptmzi0003akm64evdgj5l" data-title="android:configChanges属性解析" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" data-id="cl95g5st80005hcm6b2065prd" data-title="android:configChanges属性解析" class="article-share-link">Share</a>
       
       
       
@@ -211,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/FragmentManager/" data-id="cl90ptmzj0004akm625kohfsh" data-title="FragmentManager" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/FragmentManager/" data-id="cl95g5st40001hcm6dbdu2nu7" data-title="FragmentManager" class="article-share-link">Share</a>
       
       
       
@@ -270,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" data-id="cl90ptmzb0000akm6b56667o2" data-title="Android 弱引用的应用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" data-id="cl95g5st00000hcm682qwhyka" data-title="Android 弱引用的应用" class="article-share-link">Share</a>
       
       
       
@@ -323,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl90ptmzj0005akm66jzeg0fy" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl95g5st80004hcm624a935p0" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
