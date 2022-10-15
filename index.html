@@ -71,6 +71,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android开发问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-10-15T05:52:15.000Z" itemprop="datePublished">2022-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Android开发问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Android屏保相关"><a href="#Android屏保相关" class="headerlink" title="Android屏保相关"></a>Android屏保相关</h1><ol>
+<li>Android屏保的进程和主程序并不在同一线程上，所以使用Eventbus是无效的</li>
+<li>Android的广播是对进行的别的进程有效的，但对还未开启的进程是无效的，所以广播对于更新屏保的作用也是不大</li>
+<li>Android屏保类似于一个Activity</li>
+<li>registerreceiver和sendbroadcast都是Context类的方法需要先获取context才能使用</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" data-id="cl99ii7it0001fcm68ldkf8wv" data-title="Android开发问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-EventBus" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/10/08/EventBus/" class="article-date">
@@ -189,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/08/EventBus/" data-id="cl95g5st70003hcm64ddk7d7i" data-title="EventBus" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/08/EventBus/" data-id="cl99ii7iw0003fcm6e75ac22z" data-title="EventBus" class="article-share-link">Share</a>
       
       
       
@@ -233,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" data-id="cl95g5st80005hcm6b2065prd" data-title="android:configChanges属性解析" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" data-id="cl99ii7iz0008fcm6d6xh2o50" data-title="android:configChanges属性解析" class="article-share-link">Share</a>
       
       
       
@@ -300,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/24/FragmentManager/" data-id="cl95g5st40001hcm6dbdu2nu7" data-title="FragmentManager" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/24/FragmentManager/" data-id="cl99ii7ix0004fcm6403df8hf" data-title="FragmentManager" class="article-share-link">Share</a>
       
       
       
@@ -359,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" data-id="cl95g5st00000hcm682qwhyka" data-title="Android 弱引用的应用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" data-id="cl99ii7ip0000fcm65x6fcdli" data-title="Android 弱引用的应用" class="article-share-link">Share</a>
       
       
       
@@ -412,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl95g5st80004hcm624a935p0" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl99ii7ix0005fcm6bwuj0n40" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -469,6 +513,10 @@
       <ul>
         
           <li>
+            <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Android开发问题</a>
+          </li>
+        
+          <li>
             <a href="/2022/10/08/EventBus/">EventBus</a>
           </li>
         
@@ -482,10 +530,6 @@
         
           <li>
             <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/">Android 弱引用的应用</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/21/hello-world/">Hello World</a>
           </li>
         
       </ul>
