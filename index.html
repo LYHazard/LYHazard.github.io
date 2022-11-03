@@ -71,6 +71,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hexo常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2022-11-03T03:59:51.000Z" itemprop="datePublished">2022-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1、hexo init<br> hexo init 命令用于初始化一个本地文件夹为网站的根目录<br>1<br>2、hexo new<br>$ hexo new title 新建一篇文章<br>1<br>3、hexo generate<br>$ hexo generate 可以简写成 hexo g<br>该命令用于生成静态文件</p>
+<p>4、hexo server<br>$ hexo server 命令用于启动本地服务器，一般可以简写成 hexo s<br>可以加一些参数<br>-p    选项，指定服务器端口，默认为 4000<br>-i    选项，指定服务器 IP 地址，默认为 0.0.0.0<br>-s    选项，静态模式 ，仅提供 public 文件夹中的文件并禁用文件监视<br>1</p>
+<p>5、hexo deploy<br>$ hexo deploy 命令用于部署网站，一般可以简写成 hexo d<br>1<br>6、hexo clean<br>$ hexo clean 命令用于清理缓存文件，是一个比较常用的命令<br>1<br>7、hexo –safe<br>$ hexo –safe 表示安全模式，用于禁用加载插件和脚本<br>1<br>8、hexo –debug<br>$ hexo –debug 表示调试模式，用于将消息详细记录到终端和 debug.log 文件<br>1<br>9、hexo –silent<br>$ hexo –silent  表示静默模式，用于静默输出到终端</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cla0jxfeq0000hkm67w5m4ntc" data-title="hexo常用命令" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Android开发问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
@@ -98,6 +139,14 @@
 <li>Android的广播是对进行的别的进程有效的，但对还未开启的进程是无效的，所以广播对于更新屏保的作用也是不大</li>
 <li>Android屏保类似于一个Activity</li>
 <li>registerreceiver和sendbroadcast都是Context类的方法需要先获取context才能使用</li>
+</ol>
+<h1 id="Android布局文件相关"><a href="#Android布局文件相关" class="headerlink" title="Android布局文件相关"></a>Android布局文件相关</h1><h2 id="Imageview"><a href="#Imageview" class="headerlink" title="Imageview"></a>Imageview</h2><ol>
+<li><p>在插入图片后图片会出现莫名其妙的边距的问题，但是打开这张图片的时候图片是没有这个边距的，这时候就需要在imageview控件中添加一行代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>原因是因为图片高度设置的是wrap_content，但有时候图片的质量很高，如果宽度显示的效果是适应屏幕的，那系统就会误以为高度也适应了屏幕。</p>
+<p>所以用android:adjustViewBounds属性用于保持宽高比，图片宽度填满，高度自适配</p>
+</li>
 </ol>
 
       
@@ -229,6 +278,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2018-12-08 10:40:54.444 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onClick: post</span><br><span class="line">2018-12-08 10:40:57.365 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onClick: start register</span><br><span class="line">2018-12-08 10:40:57.369 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onReceiveMsg: type=233--message= post message before</span><br><span class="line">2018-12-08 10:40:57.369 9129-9129/com.example.yumryang.eventbusdemo E/MainActivity: onReceiveMsg: current thread name =main</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="priority"><a href="#priority" class="headerlink" title="priority"></a>priority</h2><p>该参数是int型，默认值是0，比较好理解，就像他的参数名所表示的那样，优先级。值越高，越先接收到事件，不过这里要注意一个问题，那就是优先级的比较前提是在post事件发布，onReceiveMsg事件接收处理这两方的线程环境相同的前提下，才有意义。同是与priority相配合使用的一个方法是cancelEventDelivery.关于它们的使用就不在演示，比较简单。</p>
+<h2 id="EventBus使用的注意事项"><a href="#EventBus使用的注意事项" class="headerlink" title="EventBus使用的注意事项"></a>EventBus使用的注意事项</h2><ol>
+<li>eventBus不能跨进程通信</li>
+<li>eventBus不能在一个循环中取出多个对象，只能取一次第二次取出则为空</li>
+</ol>
 
       
     </div>
@@ -500,7 +553,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
     </div>
   </div>
 
@@ -511,6 +564,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a>
+          </li>
         
           <li>
             <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Android开发问题</a>
@@ -526,10 +583,6 @@
         
           <li>
             <a href="/2022/09/24/FragmentManager/">FragmentManager</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/">Android 弱引用的应用</a>
           </li>
         
       </ul>
