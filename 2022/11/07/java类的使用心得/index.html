@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2022/9 | Hexo</title>
+  <title>java类的使用心得 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/09/index.html">
+  <meta name="description" content="java.text包SimpleDateFormatSimpleDateFormat是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。 SimpleDateFormat允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种getTimeInstance ， getDateInstance ，或ge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java类的使用心得">
+<meta property="og:url" content="http://example.com/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="java.text包SimpleDateFormatSimpleDateFormat是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。 SimpleDateFormat允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种getTimeInstance ， getDateInstance ，或ge">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-07T13:11:43.000Z">
+<meta property="article:modified_time" content="2022-11-08T07:02:07.716Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,96 +73,72 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-29T09:10:58.000Z" itemprop="datePublished">Sep 29</time>
+        <section id="main"><article id="post-java类的使用心得" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="article-date">
+  <time class="dt-published" datetime="2022-11-07T13:11:43.000Z" itemprop="datePublished">2022-11-07</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/">android:configChanges属性解析</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      java类的使用心得
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/24/FragmentManager/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-24T08:38:21.000Z" itemprop="datePublished">Sep 24</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/24/FragmentManager/">FragmentManager</a>
-    </h1>
-  
+        <h1 id="java-text包"><a href="#java-text包" class="headerlink" title="java.text包"></a>java.text包</h1><h2 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h2><p><code>SimpleDateFormat</code>是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。</p>
+<p><code>SimpleDateFormat</code>允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种<code>getTimeInstance</code> ， <code>getDateInstance</code> ，或<code>getDateTimeInstance</code>在<code>DateFormat</code> 。 这些类方法中的每一个都可以返回使用默认格式模式初始化的日期&#x2F;时间格式化程序。 您可以根据需要使用<code>applyPattern</code>方法修改格式模式。 有关使用这些方法的更多信息，请参见<a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/DateFormat.html"><code>DateFormat</code></a> 。</p>
+<p><strong>构造方法：</strong></p>
+<ul>
+<li><pre><code class="java">SimpleDateFormat（）//构造一个SimpleDateFormate使用默认模式和日期格式符号为默认的FORMAT区域设置
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat（String pattern）//使用给定模式SimpleDateFormat并使用默认的 FORMAT语言环境的默认日期格式符号。</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>&#96;&#96;&#96;java<br>SimpleDateFormat（String pattern, DateFormatSymbols formatSymbols）&#x2F;&#x2F;使用给定的模式和日期格式符号构造一个SimpleDateFormat</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat(String pattern, Locale locale)//构造一个 `SimpleDateFormat`使用给定的模式和给定的区域设置的默认日期格式符号。</span><br></pre></td></tr></table></figure></li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-22T07:35:55.000Z" itemprop="datePublished">Sep 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/">Android 弱引用的应用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/21/hello-world/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-21T08:15:17.029Z" itemprop="datePublished">Sep 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" data-id="cladc1a270001ssm606o574e6" data-title="java类的使用心得" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git问题集锦
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo常用命令</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

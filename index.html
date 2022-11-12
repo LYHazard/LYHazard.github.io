@@ -71,6 +71,142 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git问题集锦" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" class="article-date">
+  <time class="dt-published" datetime="2022-11-11T13:30:58.000Z" itemprop="datePublished">2022-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">git问题集锦</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="工作区、暂存区、版本库"><a href="#工作区、暂存区、版本库" class="headerlink" title="工作区、暂存区、版本库"></a>工作区、暂存区、版本库</h1><ul>
+<li>工作区：就是你在电脑里能看到的目录。</li>
+<li>暂存区：英文叫 stage 或 index。一般存放在 .git 目录下的index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。</li>
+<li>版本库：工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库。<br><img src="/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6.assets/image-20221111215622250.png" alt="image-20221111215622250"></li>
+</ul>
+<p><img src="/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6.assets/image-20221111215654411.png" alt="image-20221111215654411"></p>
+<h2 id="1、提交代码到仓库"><a href="#1、提交代码到仓库" class="headerlink" title="1、提交代码到仓库"></a>1、提交代码到仓库</h2><p>1）克隆 或 拉取最新代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//克隆</span><br><span class="line">git clone http://xxx</span><br><span class="line"></span><br><span class="line">//拉取</span><br><span class="line">git pull http://xxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2）添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx</span><br></pre></td></tr></table></figure>
+
+<p>3）描述信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;提交&quot;</span><br></pre></td></tr></table></figure>
+
+<p>4）推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、pull拉取最新代码"><a href="#2、pull拉取最新代码" class="headerlink" title="2、pull拉取最新代码"></a>2、pull拉取最新代码</h2><p>本地仓库的代码还未被更新，此时：</p>
+<p>（1）更新远程仓库的代码为最新的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
+
+<p>(2) 让本地代码与origin&#x2F;master完全相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
+
+<p>(3) git pull 拉取远程代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+
+<p>(4)git merge将暂存区代码更新到本地工作区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge master</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、关联仓库并上传代码"><a href="#3、关联仓库并上传代码" class="headerlink" title="3、关联仓库并上传代码"></a>3、关联仓库并上传代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://gitee.com/xxx/xxx.git</span><br><span class="line">git push -u origin &quot;master&quot;</span><br></pre></td></tr></table></figure>
+
+<p>查看关联仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v	</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、关联已有仓库并提交代码"><a href="#4、关联已有仓库并提交代码" class="headerlink" title="4、关联已有仓库并提交代码"></a>4、关联已有仓库并提交代码</h2><p>第一步：找到适合位置，右键打开git工具</p>
+<p>第二步：克隆或拉取代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone http://xxx.git</span><br><span class="line"></span><br><span class="line">git pull http://xxx.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三步：创建和切换分支</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.【git branch】查看一下本地分支，再【git branch -a】查看一下远程分支，对比下，远程存在哪些本地没有的新分支.</span><br><span class="line"></span><br><span class="line">2.将某个远程主机的更新，全部取回本地：【git fetch】</span><br><span class="line"></span><br><span class="line">3.再次查看远程分支：【git branch -a】 发现远程的分支已经可以看见了</span><br><span class="line"></span><br><span class="line">4.拉取远程分支到本地：</span><br><span class="line">创建远程分支并切换到该分支:【git checkout -b (远程分支名)】 </span><br><span class="line">拉取远程分支代码到本地分支：【git pull origin (远程分支名称)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第四步、将要上传的代码拷贝到当前目录下</p>
+<p>第五步、上传并提交代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git add xxx/</span><br><span class="line"></span><br><span class="line">git commit -m &quot;init-1.0&quot;</span><br><span class="line"></span><br><span class="line">git push origin feature</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git branch -r  //查看远程所有分支</span><br><span class="line"></span><br><span class="line">git branch //查看本地所有分支</span><br><span class="line"></span><br><span class="line">git branch -a //查看本地及远程的所有分支</span><br><span class="line"></span><br><span class="line">git fetch  //将某个远程主机的更新，全部取回本地</span><br><span class="line"></span><br><span class="line">git remote -v //查看仓库关联情况</span><br><span class="line"></span><br><span class="line">git status //查看git状态</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" data-id="cladc1a220000ssm6g7il1k2n" data-title="git问题集锦" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-java类的使用心得" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="article-date">
+  <time class="dt-published" datetime="2022-11-07T13:11:43.000Z" itemprop="datePublished">2022-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">java类的使用心得</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="java-text包"><a href="#java-text包" class="headerlink" title="java.text包"></a>java.text包</h1><h2 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h2><p><code>SimpleDateFormat</code>是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。</p>
+<p><code>SimpleDateFormat</code>允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种<code>getTimeInstance</code> ， <code>getDateInstance</code> ，或<code>getDateTimeInstance</code>在<code>DateFormat</code> 。 这些类方法中的每一个都可以返回使用默认格式模式初始化的日期&#x2F;时间格式化程序。 您可以根据需要使用<code>applyPattern</code>方法修改格式模式。 有关使用这些方法的更多信息，请参见<a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/DateFormat.html"><code>DateFormat</code></a> 。</p>
+<p><strong>构造方法：</strong></p>
+<ul>
+<li><pre><code class="java">SimpleDateFormat（）//构造一个SimpleDateFormate使用默认模式和日期格式符号为默认的FORMAT区域设置
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat（String pattern）//使用给定模式SimpleDateFormat并使用默认的 FORMAT语言环境的默认日期格式符号。</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>&#96;&#96;&#96;java<br>SimpleDateFormat（String pattern, DateFormatSymbols formatSymbols）&#x2F;&#x2F;使用给定的模式和日期格式符号构造一个SimpleDateFormat</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat(String pattern, Locale locale)//构造一个 `SimpleDateFormat`使用给定的模式和给定的区域设置的默认日期格式符号。</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" data-id="cladc1a270001ssm606o574e6" data-title="java类的使用心得" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hexo常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
@@ -566,6 +702,14 @@
       <ul>
         
           <li>
+            <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">git问题集锦</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">java类的使用心得</a>
+          </li>
+        
+          <li>
             <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a>
           </li>
         
@@ -575,14 +719,6 @@
         
           <li>
             <a href="/2022/10/08/EventBus/">EventBus</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/">android:configChanges属性解析</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/24/FragmentManager/">FragmentManager</a>
           </li>
         
       </ul>
