@@ -71,6 +71,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-adb-命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2022-11-26T05:01:48.000Z" itemprop="datePublished">2022-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/">adb 命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>想看比较全又不用百度的adb命令 ：adb help<br>打印本机所有软件包  adb shell pm list packages<br>输出和安装包相关联的文件 adb shell pm list packages -f<br>打印输出第三方安装包 adb shell pm list packages -3<br>输出本机禁用的包 adb shell pm list packages -d<br>输出本机启用的包 adb shell pm list packages -e<br>查看ADB版本：adb version<br>查看手机设备：adb devices<br>查看设备型号：adb shell getprop ro.product.model<br>查看电池信息：adb shell dumpsys battery<br>查看设备ID：adb shell settings get secure android_id<br>查看设备IMEI：adb shell dumpsys iphonesubinfo （好像看不了，哈哈）<br>查看Android版本：adb shell getprop ro.build.version.release<br>查看手机网络信息：adb shell ifconfig<br>查看设备日志：adb logcat （log疯狂刷）<br>重启手机设备：adb reboot<br>安装一个apk：adb install &#x2F;path&#x2F;demo.apk<br>卸载一个apk：adb uninstall com.niubi.dadada(包名)<br>保留原数据的话 adb uninstall -k 包名<br>查看系统运行进程：adb shell ps<br>查看系统磁盘情况：adb shell ls &#x2F;path&#x2F;<br>手机设备截屏：adb shell screencap -p &#x2F;sdcard&#x2F;aa.png<br>手机文件下载到电脑：adb pull &#x2F;sdcard&#x2F;aa.png .&#x2F;<br>电脑文件上传到手机：adb push aa.png &#x2F;data&#x2F;local&#x2F;<br>手机设备录像：adb shell screenrecord &#x2F;sdcard&#x2F;ab.mp4<br>手机屏幕分辨率：adb shell wm size<br>手机屏幕密度：adb shell wm density<br>连接设备 ： adb connect [[:]]（默认端口号是：5555）<br>adb disconnect &lt;设备的IP地址&gt;:端口号 ：adb断开某设备<br>adb root：进入root权限</p>
+<p>adb reboot：重启设备</p>
+<p>adb：remount 获取读写权限</p>
+<p>adb push xxx.apk system&#x2F;app：可以指定安装位置，如系统app位置：system&#x2F;app<br>adb pull &#x2F;phone&#x2F;sdcard&#x2F;dididi.apk(手机文件地址)  C:\Users\Administrator\Desktop :将手机里文件拉取到电脑<br>adb push a.txt &#x2F;mnt&#x2F;sdcard&#x2F;  ：将电脑某一目录下的文件a.txt 传到手机指定目录mnt&#x2F;sdcad目录中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" data-id="claxh1r2m0000p0m6hvnodlq0" data-title="adb 命令" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-重要计算机文件缩写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T14:35:49.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/">重要计算机术语缩写</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机网络相关"><a href="#计算机网络相关" class="headerlink" title="计算机网络相关"></a>计算机网络相关</h1><p><strong>TCP</strong> : Transmission Control Protocol，传输控制协议</p>
+<p>**IP **: Internet Protocol，网际协议</p>
+<p>**IETF **：Internet Engineering Task Force，因特网工程任务组</p>
+<p>**RFC **：Request For Comment，请求评论文档，目的是解决因特网先驱者们面临的网络和协议问题</p>
+<p><strong>URL</strong> : uniform resource locator,统一资源定位系统</p>
+<p><strong>DSL</strong> ：Digital Subscriber Line，数字用户线</p>
+<p><strong>DSLAM</strong> ：数字用户线接入复用器</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" data-id="claxh1r2p0001p0m6bd4rcqp2" data-title="重要计算机术语缩写" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-git问题集锦" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" class="article-date">
@@ -606,58 +693,12 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/21/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-09-21T08:15:17.029Z" itemprop="datePublished">2022-09-21</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="cl9b7ewcz0005c8m6hfjs5ou2" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -702,6 +743,14 @@
       <ul>
         
           <li>
+            <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/">adb 命令</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/">重要计算机术语缩写</a>
+          </li>
+        
+          <li>
             <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">git问题集锦</a>
           </li>
         
@@ -711,14 +760,6 @@
         
           <li>
             <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Android开发问题</a>
-          </li>
-        
-          <li>
-            <a href="/2022/10/08/EventBus/">EventBus</a>
           </li>
         
       </ul>
