@@ -14,7 +14,7 @@
 <meta property="og:description" content="java.text包SimpleDateFormatSimpleDateFormat是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。 SimpleDateFormat允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种getTimeInstance ， getDateInstance ，或ge">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-07T13:11:43.000Z">
-<meta property="article:modified_time" content="2022-11-08T07:02:07.716Z">
+<meta property="article:modified_time" content="2023-01-04T13:05:03.192Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -106,6 +106,14 @@
 <li><p>&#96;&#96;&#96;java<br>SimpleDateFormat（String pattern, DateFormatSymbols formatSymbols）&#x2F;&#x2F;使用给定的模式和日期格式符号构造一个SimpleDateFormat</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat(String pattern, Locale locale)//构造一个 `SimpleDateFormat`使用给定的模式和给定的区域设置的默认日期格式符号。</span><br></pre></td></tr></table></figure></li>
 </ul>
+<h1 id="java-lang-包"><a href="#java-lang-包" class="headerlink" title="java. lang 包"></a>java. lang 包</h1><h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>对比String类，相当于是一个容器，其内容对比与String的不可改变，StringBuilder是可以改变的</p>
+<p>1.在需要字符串拼接和字符串反转的情况下会用到StringBuilder</p>
+<h2 id="StringJoiner"><a href="#StringJoiner" class="headerlink" title="StringJoiner"></a>StringJoiner</h2><ul>
+<li>StringJoiner和StringBuilder一样，也可以看做是一个容器，创建之后里面的内容是可变的；</li>
+<li>作用：提高字符串的操作效率，而且代码编写特别简洁；</li>
+<li>JDK8出现的</li>
+<li>在拼接中要加上开头结尾时使用</li>
+</ul>
 
       
     </div>
@@ -171,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
     </div>
   </div>
 
@@ -184,23 +192,23 @@
       <ul>
         
           <li>
-            <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/">adb 命令</a>
+            <a href="/2023/03/09/commons-io%E6%95%B4%E7%90%86%E7%9A%84%E6%96%87%E6%A1%A3/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/">重要计算机术语缩写</a>
+            <a href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
           </li>
         
           <li>
-            <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">git问题集锦</a>
+            <a href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/">java 常识内容</a>
           </li>
         
           <li>
-            <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">java类的使用心得</a>
+            <a href="/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/">java 内存相关</a>
           </li>
         
           <li>
-            <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a>
+            <a href="/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/">源码、补码、反码</a>
           </li>
         
       </ul>
@@ -216,7 +224,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2022 John Doe<br>
+      &copy; 2023 John Doe<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

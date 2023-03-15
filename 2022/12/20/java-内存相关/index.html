@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2022/9 | Hexo</title>
+  <title>java 内存相关 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/09/index.html">
+  <meta name="description" content="栈相关方法运行时使用的内存，方法进栈运行，运行完毕就出栈 堆相关new出来的，都在堆内存中开辟一个小空间 方法区存储可以运行的class文件 当运行一个类的时候字节码文件加载时进入的内存 本地方法寄存器JVM在使用操作系统功能的时候使用，和开发无关 寄存器给CPU使用，和开发无关 数据类型基本数据类型：数据值是存储在自己的控件当中的 特点是：赋值给其他变量，也是赋的真实的值 引用数据类型：数据值是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 内存相关">
+<meta property="og:url" content="http://example.com/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="栈相关方法运行时使用的内存，方法进栈运行，运行完毕就出栈 堆相关new出来的，都在堆内存中开辟一个小空间 方法区存储可以运行的class文件 当运行一个类的时候字节码文件加载时进入的内存 本地方法寄存器JVM在使用操作系统功能的时候使用，和开发无关 寄存器给CPU使用，和开发无关 数据类型基本数据类型：数据值是存储在自己的控件当中的 特点是：赋值给其他变量，也是赋的真实的值 引用数据类型：数据值是">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-20T01:05:54.000Z">
+<meta property="article:modified_time" content="2023-01-04T12:55:37.074Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,96 +73,72 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-29T09:10:58.000Z" itemprop="datePublished">Sep 29</time>
+        <section id="main"><article id="post-java-内存相关" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time class="dt-published" datetime="2022-12-20T01:05:54.000Z" itemprop="datePublished">2022-12-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/">android:configChanges属性解析</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      java 内存相关
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/24/FragmentManager/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-24T08:38:21.000Z" itemprop="datePublished">Sep 24</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/24/FragmentManager/">FragmentManager</a>
-    </h1>
-  
+        <h1 id="栈相关"><a href="#栈相关" class="headerlink" title="栈相关"></a>栈相关</h1><p><strong>方法</strong>运行时使用的内存，方法进栈运行，运行完毕就出栈</p>
+<h1 id="堆相关"><a href="#堆相关" class="headerlink" title="堆相关"></a>堆相关</h1><p><strong>new</strong>出来的，都在堆内存中开辟一个小空间</p>
+<h1 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h1><p>存储可以运行的class文件</p>
+<p>当运行一个类的时候字节码文件加载时进入的内存</p>
+<h1 id="本地方法寄存器"><a href="#本地方法寄存器" class="headerlink" title="本地方法寄存器"></a>本地方法寄存器</h1><p>JVM在使用操作系统功能的时候使用，和开发无关</p>
+<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p>给CPU使用，和开发无关</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p><strong>基本数据类型</strong>：数据值是存储在自己的控件当中的 特点是：赋值给其他变量，也是赋的真实的值</p>
+<p><strong>引用数据类型</strong>：数据值是存储在其他空间中，自己空间中存储的是地址值</p>
+<h1 id="this的内存原理"><a href="#this的内存原理" class="headerlink" title="this的内存原理"></a>this的内存原理</h1><p>this代表着方法调用者的地址值；  </p>
+<h1 id="字符串内存原理"><a href="#字符串内存原理" class="headerlink" title="字符串内存原理"></a>字符串内存原理</h1><p>当使用双引号直接赋值时，系统会检查该字符串在串池中是否存在，<strong>不存在：创建新的  存在：复用</strong></p>
+<p>通过new出来的字符串，字符串内容不会复用</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-22T07:35:55.000Z" itemprop="datePublished">Sep 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/">Android 弱引用的应用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/21/hello-world/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-21T08:15:17.029Z" itemprop="datePublished">Sep 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/" data-id="clf97kcup0001eom690kq5dho" data-title="java 内存相关" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          java 常识内容
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">源码、补码、反码</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

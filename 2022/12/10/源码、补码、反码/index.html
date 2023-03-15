@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2022/9 | Hexo</title>
+  <title>源码、补码、反码 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/09/index.html">
+  <meta name="description" content="原码：十进制数据的二进制表现形式，最左边是符号位，0为正，1为负 反码：正数的补码反码是其本身，负数的反码是保持符号位不变，其余位取反 补码：正数的补码是其本身，负数的补码是在其反码的基础上+1 原码的弊端利用原码对正数进行计算是不会有问题的。 但是如果对负数进行计算，结果就出错，实际运算的结果，跟我们预期的结果是相反的 反码出现的目的为了解决原码不能计算负数的问题而出现的。 反码的计算规则正数的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码、补码、反码">
+<meta property="og:url" content="http://example.com/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原码：十进制数据的二进制表现形式，最左边是符号位，0为正，1为负 反码：正数的补码反码是其本身，负数的反码是保持符号位不变，其余位取反 补码：正数的补码是其本身，负数的补码是在其反码的基础上+1 原码的弊端利用原码对正数进行计算是不会有问题的。 但是如果对负数进行计算，结果就出错，实际运算的结果，跟我们预期的结果是相反的 反码出现的目的为了解决原码不能计算负数的问题而出现的。 反码的计算规则正数的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-10T05:04:38.000Z">
+<meta property="article:modified_time" content="2022-12-10T07:24:42.302Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,96 +73,73 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-29T09:10:58.000Z" itemprop="datePublished">Sep 29</time>
+        <section id="main"><article id="post-源码、补码、反码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2022-12-10T05:04:38.000Z" itemprop="datePublished">2022-12-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/">android:configChanges属性解析</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      源码、补码、反码
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/24/FragmentManager/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-24T08:38:21.000Z" itemprop="datePublished">Sep 24</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/24/FragmentManager/">FragmentManager</a>
-    </h1>
-  
+        <p><strong>原码：十进制数据的二进制表现形式，最左边是符号位，0为正，1为负</strong></p>
+<p><strong>反码：正数的补码反码是其本身，负数的反码是保持符号位不变，其余位取反</strong></p>
+<p><strong>补码：正数的补码是其本身，负数的补码是在其反码的基础上+1</strong></p>
+<h1 id="原码的弊端"><a href="#原码的弊端" class="headerlink" title="原码的弊端"></a>原码的弊端</h1><p>利用原码对正数进行计算是不会有问题的。</p>
+<p>但是如果对负数进行计算，结果就出错，实际运算的结果，跟我们预期的结果是相反的</p>
+<h1 id="反码出现的目的"><a href="#反码出现的目的" class="headerlink" title="反码出现的目的"></a>反码出现的目的</h1><p>为了解决原码不能计算负数的问题而出现的。</p>
+<h2 id="反码的计算规则"><a href="#反码的计算规则" class="headerlink" title="反码的计算规则"></a>反码的计算规则</h2><p>正数的反码不变，负数的反码在原码的基础上，符号位不变。数值取反，0变1,1变0；</p>
+<h2 id="反码的弊端"><a href="#反码的弊端" class="headerlink" title="反码的弊端"></a>反码的弊端</h2><p>负数运算时，如果结果不跨0，是没有任何问题的，但是如果结果跨0，跟实际结果会有1的偏差。</p>
+<h1 id="补码出现的目的"><a href="#补码出现的目的" class="headerlink" title="补码出现的目的"></a>补码出现的目的</h1><p>为了解决负数计算时跨0的问题而出现的。</p>
+<h2 id="补码的计算规则"><a href="#补码的计算规则" class="headerlink" title="补码的计算规则"></a>补码的计算规则</h2><p>正数的补码不变，负数的补码在反码的基础上+1。 </p>
+<p>另外补码还能多记录一个特殊的值-128，该数据在1个字节下，没有原码和反码。</p>
+<h2 id="补码的注意点"><a href="#补码的注意点" class="headerlink" title="补码的注意点"></a>补码的注意点</h2><p>计算机中的存储和计算都是以补码的形式进行的。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-22T07:35:55.000Z" itemprop="datePublished">Sep 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/22/Android-%E5%BC%B1%E5%BC%95%E7%94%A8/">Android 弱引用的应用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/09/21/hello-world/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-09-21T08:15:17.029Z" itemprop="datePublished">Sep 21</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/" data-id="clf97kcur0003eom64qp38gvu" data-title="源码、补码、反码" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          java 内存相关
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">adb 命令</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

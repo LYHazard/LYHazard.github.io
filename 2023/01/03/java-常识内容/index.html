@@ -4,15 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>java 常识内容 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="“&#x3D;”相关在数组类型用“&#x3D;” 进行赋值时 此时赋值的内容是地址，其中一个数组的内容改变，另一个的内容也随之改变 “&#x3D;&#x3D;”符号的相关在比较基本数据类型时”&#x3D;&#x3D;”比较的是数据值 在比较引用数据类型时“&#x3D;&#x3D;”比较的是地址值 字符串相关的底层原理字符串存储的内存原理 直接赋值会复用字符串常量池中的 new出来的不会复用，而是开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 常识内容">
+<meta property="og:url" content="http://example.com/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="“&#x3D;”相关在数组类型用“&#x3D;” 进行赋值时 此时赋值的内容是地址，其中一个数组的内容改变，另一个的内容也随之改变 “&#x3D;&#x3D;”符号的相关在比较基本数据类型时”&#x3D;&#x3D;”比较的是数据值 在比较引用数据类型时“&#x3D;&#x3D;”比较的是地址值 字符串相关的底层原理字符串存储的内存原理 直接赋值会复用字符串常量池中的 new出来的不会复用，而是开">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9.assets/image-20230225165326438.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303022129958.png">
+<meta property="og:image" content="http://example.com/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9.assets/image-20230314143330999-16787756136801.png">
+<meta property="article:published_time" content="2023-01-03T09:46:20.000Z">
+<meta property="article:modified_time" content="2023-03-14T12:05:05.526Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9.assets/image-20230225165326438.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -69,236 +77,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-commons-io整理的文档" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/09/commons-io%E6%95%B4%E7%90%86%E7%9A%84%E6%96%87%E6%A1%A3/" class="article-date">
-  <time class="dt-published" datetime="2023-03-09T13:47:54.413Z" itemprop="datePublished">2023-03-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="1，IOUtils（数据相关）"><a href="#1，IOUtils（数据相关）" class="headerlink" title="1，IOUtils（数据相关）"></a>1，IOUtils（数据相关）</h1><h3 id="拷贝方法："><a href="#拷贝方法：" class="headerlink" title="拷贝方法："></a>拷贝方法：</h3><p>copy方法有多个重载方法，满足不同的输入输出流</p>
-<p>IOUtils.copy(InputStream input, OutputStream output)</p>
-<p>IOUtils.copy(InputStream input, OutputStream output, int bufferSize)&#x2F;&#x2F;可指定缓冲区大小</p>
-<p>IOUtils.copy(InputStream input, Writer output, String inputEncoding)&#x2F;&#x2F;可指定输入流的编码表</p>
-<p>IOUtils.copy(Reader input, Writer output)</p>
-<p>IOUtils.copy(Reader input, OutputStream output, String outputEncoding)&#x2F;&#x2F;可指定输出流的编码表</p>
-<h3 id="拷贝大文件的方法："><a href="#拷贝大文件的方法：" class="headerlink" title="拷贝大文件的方法："></a>拷贝大文件的方法：</h3><p>&#x2F;&#x2F; 这个方法适合拷贝较大的数据流，比如2G以上</p>
-<p>IOUtils.copyLarge(Reader input, Writer output) &#x2F;&#x2F; 默认会用1024*4的buffer来读取</p>
-<p>IOUtils.copyLarge(Reader input, Writer output, char[] buffer)&#x2F;&#x2F;可指定缓冲区大小</p>
-<p> </p>
-<h3 id="将输入流转换成字符串"><a href="#将输入流转换成字符串" class="headerlink" title="将输入流转换成字符串"></a>将输入流转换成字符串</h3><p>IOUtils.toString(Reader input)</p>
-<p>IOUtils.toString(byte[] input, String encoding)</p>
-<p>IOUtils.toString(InputStream input, Charset encoding)</p>
-<p>IOUtils.toString(InputStream input, String encoding)</p>
-<p>IOUtils.toString(URI uri, String encoding)</p>
-<p>IOUtils.toString(URL url, String encoding)</p>
-<p> </p>
-<h3 id="将输入流转换成字符数组"><a href="#将输入流转换成字符数组" class="headerlink" title="将输入流转换成字符数组"></a>将输入流转换成字符数组</h3><p>IOUtils.toByteArray(InputStream input)</p>
-<p>IOUtils.toByteArray(InputStream input, int size)</p>
-<p>IOUtils.toByteArray(URI uri)</p>
-<p>IOUtils.toByteArray(URL url)</p>
-<p>IOUtils.toByteArray(URLConnection urlConn)</p>
-<p>IOUtils.toByteArray(Reader input, String encoding)</p>
-<p> </p>
-<h3 id="字符串读写"><a href="#字符串读写" class="headerlink" title="字符串读写"></a>字符串读写</h3><p>IOUtils.readLines(Reader input)</p>
-<p>IOUtils.readLines(InputStream input, Charset encoding)</p>
-<p>IOUtils.readLines(InputStream input, String encoding)</p>
-<p>IOUtils.writeLines(Collection&lt;?&gt; lines, String lineEnding, Writer writer)</p>
-<p>IOUtils.writeLines(Collection&lt;?&gt; lines, String lineEnding, OutputStream output, Charset encoding)</p>
-<p>IOUtils.writeLines(Collection&lt;?&gt; lines, String lineEnding, OutputStream output, String encoding)</p>
-<h3 id="从一个流中读取内容"><a href="#从一个流中读取内容" class="headerlink" title="从一个流中读取内容"></a>从一个流中读取内容</h3><p>IOUtils.read(InputStream input, byte[] buffer)</p>
-<p>IOUtils.read(InputStream input, byte[] buffer, int offset, int length) IOUtils.read(Reader input, char[] buffer)</p>
-<p>IOUtils.read(Reader input, char[] buffer, int offset, int length)</p>
-<h3 id="把数据写入到输出流中"><a href="#把数据写入到输出流中" class="headerlink" title="把数据写入到输出流中"></a>把数据写入到输出流中</h3><p>IOUtils.write(byte[] data, OutputStream output)</p>
-<p>IOUtils.write(byte[] data, Writer output, Charset encoding)</p>
-<p>IOUtils.write(byte[] data, Writer output, String encoding)</p>
-<p>IOUtils.write(char[] data, Writer output)</p>
-<p>IOUtils.write(char[] data, OutputStream output, Charset encoding)</p>
-<p>IOUtils.write(char[] data, OutputStream output, String encoding)</p>
-<p>IOUtils.write(String data, Writer output)</p>
-<p>IOUtils.write(CharSequence data, Writer output)</p>
-<p> </p>
-<h3 id="从一个流中读取内容，如果读取的长度不够，就会抛出异常"><a href="#从一个流中读取内容，如果读取的长度不够，就会抛出异常" class="headerlink" title="从一个流中读取内容，如果读取的长度不够，就会抛出异常"></a>从一个流中读取内容，如果读取的长度不够，就会抛出异常</h3><p>IOUtils.readFully(InputStream input, int length)</p>
-<p>IOUtils.readFully(InputStream input, byte[] buffer)</p>
-<p>IOUtils.readFully(InputStream input, byte[] buffer, int offset, int length) IOUtils.readFully(Reader input, char[] buffer)</p>
-<p>IOUtils.readFully(Reader input, char[] buffer, int offset, int length)</p>
-<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>IOUtils.contentEquals(InputStream input1, InputStream input2) &#x2F;&#x2F; 比较两个流是否相等</p>
-<p>IOUtils.contentEquals(Reader input1, Reader input2)</p>
-<p>IOUtils.contentEqualsIgnoreEOL(Reader input1, Reader input2) &#x2F;&#x2F; 比较两个流，忽略换行符</p>
-<p> </p>
-<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><p>IOUtils.skip(InputStream input, long toSkip) &#x2F;&#x2F; 跳过指定长度的流</p>
-<p>IOUtils.skip(Reader input, long toSkip)</p>
-<p>IOUtils.skipFully(InputStream input, long toSkip) &#x2F;&#x2F; 如果忽略的长度大于现有的长度，就会抛出异常</p>
-<p>IOUtils.skipFully(Reader input, long toSkip)</p>
-<p> </p>
-<h1 id="2，FileUtils（文件-x2F-文件夹相关）"><a href="#2，FileUtils（文件-x2F-文件夹相关）" class="headerlink" title="2，FileUtils（文件&#x2F;文件夹相关）"></a>2，FileUtils（文件&#x2F;文件夹相关）</h1><h3 id="复制文件夹"><a href="#复制文件夹" class="headerlink" title="复制文件夹"></a>复制文件夹</h3><p>FileUtils.copyDirectory(File srcDir, File destDir) &#x2F;&#x2F; 复制文件夹（文件夹里面的文件内容也会复制）</p>
-<p>FileUtils.copyDirectory(File srcDir, File destDir, FileFilter filter) &#x2F;&#x2F; 复制文件夹，带有文件过滤功能</p>
-<p>FileUtils.copyDirectoryToDirectory(File srcDir, File destDir) &#x2F;&#x2F; 以子目录的形式将文件夹复制到到另一个文件夹下</p>
-<p> </p>
-<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p>FileUtils.copyFile(File srcFile, File destFile) &#x2F;&#x2F; 复制文件</p>
-<p>FileUtils.copyFile(File input, OutputStream output) &#x2F;&#x2F; 复制文件到输出流</p>
-<p>FileUtils.copyFileToDirectory(File srcFile, File destDir) &#x2F;&#x2F; 复制文件到一个指定的目录</p>
-<p>FileUtils.copyInputStreamToFile(InputStream source, File destination) &#x2F;&#x2F; 把输入流里面的内容复制到指定文件</p>
-<p>FileUtils.copyURLToFile(URL source, File destination) &#x2F;&#x2F; 把URL 里面内容复制到文件(可以下载文件)</p>
-<p>FileUtils.copyURLToFile(URL source, File destination, int connectionTimeout, int readTimeout)</p>
-<p> </p>
-<h3 id="把字符串写入文件"><a href="#把字符串写入文件" class="headerlink" title="把字符串写入文件"></a>把字符串写入文件</h3><p>FileUtils.writeStringToFile(File file, String data, String encoding)</p>
-<p>FileUtils.writeStringToFile(File file, String data, String encoding, boolean append)</p>
-<h3 id="把字节数组写入文件"><a href="#把字节数组写入文件" class="headerlink" title="把字节数组写入文件"></a>把字节数组写入文件</h3><p>FileUtils.writeByteArrayToFile(File file, byte[] data)</p>
-<p>FileUtils.writeByteArrayToFile(File file, byte[] data, boolean append) FileUtils.writeByteArrayToFile(File file, byte[] data, int off, int len) FileUtils.writeByteArrayToFile(File file, byte[] data, int off, int len, boolean append)</p>
-<h3 id="把集合里面的内容写入文件"><a href="#把集合里面的内容写入文件" class="headerlink" title="把集合里面的内容写入文件"></a>把集合里面的内容写入文件</h3><p>&#x2F;&#x2F; encoding：文件编码，lineEnding：每行以什么结尾</p>
-<p>FileUtils.writeLines(File file, Collection&lt;?&gt; lines)</p>
-<p>FileUtils.writeLines(File file, Collection&lt;?&gt; lines, boolean append)</p>
-<p>FileUtils.writeLines(File file, Collection&lt;?&gt; lines, String lineEnding)</p>
-<p>FileUtils.writeLines(File file, Collection&lt;?&gt; lines, String lineEnding, boolean append)</p>
-<p>FileUtils.writeLines(File file, String encoding, Collection&lt;?&gt; lines)</p>
-<p>FileUtils.writeLines(File file, String encoding, Collection&lt;?&gt; lines, boolean append)</p>
-<p>FileUtils.writeLines(File file, String encoding, Collection&lt;?&gt; lines, String lineEnding)</p>
-<p>FileUtils.writeLines(File file, String encoding, Collection&lt;?&gt; lines, String lineEnding, boolean append)</p>
-<h3 id="往文件里面写内容"><a href="#往文件里面写内容" class="headerlink" title="往文件里面写内容"></a>往文件里面写内容</h3><p>FileUtils.write(File file, CharSequence data, Charset encoding)</p>
-<p>FileUtils.write(File file, CharSequence data, Charset encoding, boolean append)</p>
-<p>FileUtils.write(File file, CharSequence data, String encoding)</p>
-<p>FileUtils.write(File file, CharSequence data, String encoding, boolean append)</p>
-<p> </p>
-<h3 id="文件移动"><a href="#文件移动" class="headerlink" title="文件移动"></a>文件移动</h3><p>FileUtils.moveDirectory(File srcDir, File destDir) &#x2F;&#x2F; 文件夹在内的所有文件都将移动FileUtils.moveDirectoryToDirectory(File src, File destDir, boolean createDestDir) &#x2F;&#x2F; 以子文件夹的形式移动到另外一个文件下</p>
-<p>FileUtils.moveFile(File srcFile, File destFile) &#x2F;&#x2F; 移动文件</p>
-<p>FileUtils.moveFileToDirectory(File srcFile, File destDir, boolean createDestDir) &#x2F;&#x2F; 以子文件的形式移动到另外一个文件夹下</p>
-<p>FileUtils.moveToDirectory(File src, File destDir, boolean createDestDir) &#x2F;&#x2F; 移动文件或者目录到指定的文件夹内</p>
-<p> </p>
-<h3 id="清空和删除文件夹"><a href="#清空和删除文件夹" class="headerlink" title="清空和删除文件夹"></a>清空和删除文件夹</h3><p>FileUtils.deleteDirectory(File directory) &#x2F;&#x2F; 删除文件夹，包括文件夹和文件夹里面所有的文件</p>
-<p>FileUtils.cleanDirectory(File directory) &#x2F;&#x2F; 清空文件夹里面的所有的内容</p>
-<p>FileUtils.forceDelete(File file) &#x2F;&#x2F; 删除，会抛出异常</p>
-<p>FileUtils.deleteQuietly(File file) &#x2F;&#x2F; 删除，不会抛出异常</p>
-<p> </p>
-<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><p>FileUtils.forceMkdir(File directory) &#x2F;&#x2F; 创建文件夹(可创建多级)</p>
-<p>FileUtils.forceMkdirParent(File file) &#x2F;&#x2F; 创建文件的父级目录</p>
-<p> </p>
-<h3 id="获取文件输入-x2F-输出流"><a href="#获取文件输入-x2F-输出流" class="headerlink" title="获取文件输入&#x2F;输出流"></a>获取文件输入&#x2F;输出流</h3><p>FileUtils.openInputStream(File file)</p>
-<p>FileUtils.openOutputStream(File file)</p>
-<h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><p>FileUtils.readFileToByteArray(File file) &#x2F;&#x2F; 把文件读取到字节数组</p>
-<p>FileUtils.readFileToString(File file, Charset encoding) &#x2F;&#x2F; 把文件读取成字符串</p>
-<p>FileUtils.readFileToString(File file, String encoding)</p>
-<p>FileUtils.readLines(File file, Charset encoding) &#x2F;&#x2F; 把文件读取成字符串集合</p>
-<p>FileUtils.readLines(File file, String encoding)</p>
-<p> </p>
-<h3 id="测试两个文件的修改时间"><a href="#测试两个文件的修改时间" class="headerlink" title="测试两个文件的修改时间"></a>测试两个文件的修改时间</h3><p>FileUtils.isFileNewer(File file, Date date)</p>
-<p>FileUtils.isFileNewer(File file, File reference)</p>
-<p>FileUtils.isFileNewer(File file, long timeMillis)</p>
-<p>FileUtils.isFileOlder(File file, Date date)</p>
-<p>FileUtils.isFileOlder(File file, File reference)</p>
-<p>FileUtils.isFileOlder(File file, long timeMillis)</p>
-<p> </p>
-<p> </p>
-<h3 id="文件-x2F-文件夹的迭代"><a href="#文件-x2F-文件夹的迭代" class="headerlink" title="文件&#x2F;文件夹的迭代"></a>文件&#x2F;文件夹的迭代</h3><p>FileUtils.iterateFiles(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)</p>
-<p>FileUtils.iterateFiles(File directory, String[] extensions, boolean recursive)</p>
-<p>FileUtils.iterateFilesAndDirs(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)</p>
-<p>FileUtils.lineIterator(File file)</p>
-<p>FileUtils.lineIterator(File file, String encoding)</p>
-<p> </p>
-<p>FileUtils.listFiles(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)</p>
-<p>FileUtils.listFiles(File directory, String[] extensions, boolean recursive)</p>
-<p>FileUtils.listFilesAndDirs(File directory, IOFileFilter fileFilter, IOFileFilter dirFilter)</p>
-<p> </p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>FileUtils.isSymlink(File file) &#x2F;&#x2F; 判断是否是符号链接</p>
-<p>FileUtils.directoryContains(File directory, File child) &#x2F;&#x2F; 判断文件夹内是否包含某个文件或者文件夹</p>
-<p> FileUtils.sizeOf(File file) &#x2F;&#x2F; 获取文件或者文件夹的大小</p>
-<p>FileUtils.getTempDirectory()&#x2F;&#x2F; 获取临时目录文件</p>
-<p>FileUtils.getTempDirectoryPath()&#x2F;&#x2F; 获取临时目录路径</p>
-<p>FileUtils.getUserDirectory()&#x2F;&#x2F; 获取用户目录文件</p>
-<p>FileUtils.getUserDirectoryPath()&#x2F;&#x2F; 获取用户目录路径</p>
-<p>FileUtils.touch(File file) &#x2F;&#x2F; 创建文件</p>
-<p>FileUtils.contentEquals(File file1, File file2) &#x2F;&#x2F; 比较两个文件内容是否相同</p>
-<h1 id="FilenameUtils（文件名-x2F-后缀名相关）"><a href="#FilenameUtils（文件名-x2F-后缀名相关）" class="headerlink" title="FilenameUtils（文件名&#x2F;后缀名相关）"></a>FilenameUtils（文件名&#x2F;后缀名相关）</h1><p>FilenameUtils.concat(String basePath, String fullFilenameToAdd) &#x2F;&#x2F; 合并目录和文件名为文件全路径</p>
-<p>FilenameUtils.getBaseName(String filename) &#x2F;&#x2F; 去除目录和后缀后的文件名</p>
-<p>FilenameUtils.getExtension(String filename) &#x2F;&#x2F; 获取文件的后缀</p>
-<p>FilenameUtils.getFullPath(String filename) &#x2F;&#x2F; 获取文件的目录</p>
-<p>FilenameUtils.getName(String filename) &#x2F;&#x2F; 获取文件名</p>
-<p>FilenameUtils.getPath(String filename) &#x2F;&#x2F; 去除盘符后的路径</p>
-<p>FilenameUtils.getPrefix(String filename) &#x2F;&#x2F; 盘符</p>
-<p>FilenameUtils.indexOfExtension(String filename) &#x2F;&#x2F; 获取最后一个.的位置</p>
-<p>FilenameUtils.indexOfLastSeparator(String filename) &#x2F;&#x2F; 获取最后一个&#x2F;的位置</p>
-<p>FilenameUtils.normalize(String filename) &#x2F;&#x2F; 获取当前系统格式化路径</p>
-<p>FilenameUtils.removeExtension(String filename) &#x2F;&#x2F; 移除文件的扩展名</p>
-<p>FilenameUtils.separatorsToSystem(String path) &#x2F;&#x2F; 转换分隔符为当前系统分隔符</p>
-<p>FilenameUtils.separatorsToUnix(String path) &#x2F;&#x2F; 转换分隔符为linux系统分隔符</p>
-<p>FilenameUtils.separatorsToWindows(String path) &#x2F;&#x2F; 转换分隔符为windows系统分隔符</p>
-<p>FilenameUtils.equals(String filename1, String filename2) &#x2F;&#x2F; 判断文件路径是否相同，非格式化</p>
-<p>FilenameUtils.equalsNormalized(String filename1, String filename2) &#x2F;&#x2F; 判断文件路径是否相同，格式化</p>
-<p>FilenameUtils.directoryContains(String canonicalParent, String canonicalChild) &#x2F;&#x2F; 判断目录下是否包含指定文件或目录</p>
-<p>FilenameUtils.isExtension(String filename, String extension) &#x2F;&#x2F; 判断文件扩展名是否包含在指定集合(数组、字符串)中</p>
-<p>FilenameUtils.wildcardMatch(String filename, String wildcardMatcher) &#x2F;&#x2F; 判断文件扩展名是否和指定规则匹配	</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/09/commons-io%E6%95%B4%E7%90%86%E7%9A%84%E6%96%87%E6%A1%A3/" data-id="clf97kcuk0000eom65u4v7sht" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-设计模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2023-01-30T08:26:30.000Z" itemprop="datePublished">2023-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="适配器设计模式"><a href="#适配器设计模式" class="headerlink" title="适配器设计模式"></a>适配器设计模式</h1><ol>
-<li>当一个接口中抽象方法过多，但是我只要使用其中一部分的时候，就可以使用适配器模式</li>
-<li>书写步骤</li>
-</ol>
-<ul>
-<li>编写中间类XXXAdapter，实现对应的接口</li>
-<li>对接口中的抽象方法进行空实现</li>
-<li>让真正的实现类继承中间类，并重写需要用的方法</li>
-<li>为避免其他类创建适配器类的对象，中间的适配器类用abstract进行修饰</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clf97kcus0004eom66u4s5fbm" data-title="设计模式" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java-常识内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-java-常识内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/" class="article-date">
   <time class="dt-published" datetime="2023-01-03T09:46:20.000Z" itemprop="datePublished">2023-01-03</time>
@@ -311,8 +90,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/">java 常识内容</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      java 常识内容
     </h1>
   
 
@@ -1179,388 +958,29 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-java-内存相关" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/" class="article-date">
-  <time class="dt-published" datetime="2022-12-20T01:05:54.000Z" itemprop="datePublished">2022-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/">java 内存相关</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="栈相关"><a href="#栈相关" class="headerlink" title="栈相关"></a>栈相关</h1><p><strong>方法</strong>运行时使用的内存，方法进栈运行，运行完毕就出栈</p>
-<h1 id="堆相关"><a href="#堆相关" class="headerlink" title="堆相关"></a>堆相关</h1><p><strong>new</strong>出来的，都在堆内存中开辟一个小空间</p>
-<h1 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h1><p>存储可以运行的class文件</p>
-<p>当运行一个类的时候字节码文件加载时进入的内存</p>
-<h1 id="本地方法寄存器"><a href="#本地方法寄存器" class="headerlink" title="本地方法寄存器"></a>本地方法寄存器</h1><p>JVM在使用操作系统功能的时候使用，和开发无关</p>
-<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p>给CPU使用，和开发无关</p>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p><strong>基本数据类型</strong>：数据值是存储在自己的控件当中的 特点是：赋值给其他变量，也是赋的真实的值</p>
-<p><strong>引用数据类型</strong>：数据值是存储在其他空间中，自己空间中存储的是地址值</p>
-<h1 id="this的内存原理"><a href="#this的内存原理" class="headerlink" title="this的内存原理"></a>this的内存原理</h1><p>this代表着方法调用者的地址值；  </p>
-<h1 id="字符串内存原理"><a href="#字符串内存原理" class="headerlink" title="字符串内存原理"></a>字符串内存原理</h1><p>当使用双引号直接赋值时，系统会检查该字符串在串池中是否存在，<strong>不存在：创建新的  存在：复用</strong></p>
-<p>通过new出来的字符串，字符串内容不会复用</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/" data-id="clf97kcup0001eom690kq5dho" data-title="java 内存相关" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-源码、补码、反码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/" class="article-date">
-  <time class="dt-published" datetime="2022-12-10T05:04:38.000Z" itemprop="datePublished">2022-12-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          设计模式
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/">源码、补码、反码</a>
-    </h1>
   
+    <a href="/2022/12/20/java-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java 内存相关</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>原码：十进制数据的二进制表现形式，最左边是符号位，0为正，1为负</strong></p>
-<p><strong>反码：正数的补码反码是其本身，负数的反码是保持符号位不变，其余位取反</strong></p>
-<p><strong>补码：正数的补码是其本身，负数的补码是在其反码的基础上+1</strong></p>
-<h1 id="原码的弊端"><a href="#原码的弊端" class="headerlink" title="原码的弊端"></a>原码的弊端</h1><p>利用原码对正数进行计算是不会有问题的。</p>
-<p>但是如果对负数进行计算，结果就出错，实际运算的结果，跟我们预期的结果是相反的</p>
-<h1 id="反码出现的目的"><a href="#反码出现的目的" class="headerlink" title="反码出现的目的"></a>反码出现的目的</h1><p>为了解决原码不能计算负数的问题而出现的。</p>
-<h2 id="反码的计算规则"><a href="#反码的计算规则" class="headerlink" title="反码的计算规则"></a>反码的计算规则</h2><p>正数的反码不变，负数的反码在原码的基础上，符号位不变。数值取反，0变1,1变0；</p>
-<h2 id="反码的弊端"><a href="#反码的弊端" class="headerlink" title="反码的弊端"></a>反码的弊端</h2><p>负数运算时，如果结果不跨0，是没有任何问题的，但是如果结果跨0，跟实际结果会有1的偏差。</p>
-<h1 id="补码出现的目的"><a href="#补码出现的目的" class="headerlink" title="补码出现的目的"></a>补码出现的目的</h1><p>为了解决负数计算时跨0的问题而出现的。</p>
-<h2 id="补码的计算规则"><a href="#补码的计算规则" class="headerlink" title="补码的计算规则"></a>补码的计算规则</h2><p>正数的补码不变，负数的补码在反码的基础上+1。 </p>
-<p>另外补码还能多记录一个特殊的值-128，该数据在1个字节下，没有原码和反码。</p>
-<h2 id="补码的注意点"><a href="#补码的注意点" class="headerlink" title="补码的注意点"></a>补码的注意点</h2><p>计算机中的存储和计算都是以补码的形式进行的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/" data-id="clf97kcur0003eom64qp38gvu" data-title="源码、补码、反码" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
 
-
-
-  
-    <article id="post-adb-命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time class="dt-published" datetime="2022-11-26T05:01:48.000Z" itemprop="datePublished">2022-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/">adb 命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>想看比较全又不用百度的adb命令 ：adb help<br>打印本机所有软件包  adb shell pm list packages<br>输出和安装包相关联的文件 adb shell pm list packages -f<br>打印输出第三方安装包 adb shell pm list packages -3<br>输出本机禁用的包 adb shell pm list packages -d<br>输出本机启用的包 adb shell pm list packages -e<br>查看ADB版本：adb version<br>查看手机设备：adb devices<br>查看设备型号：adb shell getprop ro.product.model<br>查看电池信息：adb shell dumpsys battery<br>查看设备ID：adb shell settings get secure android_id<br>查看设备IMEI：adb shell dumpsys iphonesubinfo （好像看不了，哈哈）<br>查看Android版本：adb shell getprop ro.build.version.release<br>查看手机网络信息：adb shell ifconfig<br>查看设备日志：adb logcat （log疯狂刷）<br>重启手机设备：adb reboot<br>安装一个apk：adb install &#x2F;path&#x2F;demo.apk<br>卸载一个apk：adb uninstall com.niubi.dadada(包名)<br>保留原数据的话 adb uninstall -k 包名<br>查看系统运行进程：adb shell ps<br>查看系统磁盘情况：adb shell ls &#x2F;path&#x2F;<br>手机设备截屏：adb shell screencap -p &#x2F;sdcard&#x2F;aa.png<br>手机文件下载到电脑：adb pull &#x2F;sdcard&#x2F;aa.png .&#x2F;<br>电脑文件上传到手机：adb push aa.png &#x2F;data&#x2F;local&#x2F;<br>手机设备录像：adb shell screenrecord &#x2F;sdcard&#x2F;ab.mp4<br>手机屏幕分辨率：adb shell wm size<br>手机屏幕密度：adb shell wm density<br>连接设备 ： adb connect [[:]]（默认端口号是：5555）<br>adb disconnect &lt;设备的IP地址&gt;:端口号 ：adb断开某设备<br>adb root：进入root权限</p>
-<p>adb reboot：重启设备</p>
-<p>adb：remount 获取读写权限</p>
-<p>adb push xxx.apk system&#x2F;app：可以指定安装位置，如系统app位置：system&#x2F;app<br>adb pull &#x2F;phone&#x2F;sdcard&#x2F;dididi.apk(手机文件地址)  C:\Users\Administrator\Desktop :将手机里文件拉取到电脑<br>adb push a.txt &#x2F;mnt&#x2F;sdcard&#x2F;  ：将电脑某一目录下的文件a.txt 传到手机指定目录mnt&#x2F;sdcad目录中</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" data-id="claxh1r2m0000p0m6hvnodlq0" data-title="adb 命令" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-重要计算机文件缩写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" class="article-date">
-  <time class="dt-published" datetime="2022-11-18T14:35:49.000Z" itemprop="datePublished">2022-11-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/">重要计算机术语缩写</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机网络相关"><a href="#计算机网络相关" class="headerlink" title="计算机网络相关"></a>计算机网络相关</h1><p><strong>TCP</strong> : Transmission Control Protocol，传输控制协议</p>
-<p>**IP **: Internet Protocol，网际协议</p>
-<p>**IETF **：Internet Engineering Task Force，因特网工程任务组</p>
-<p>**RFC **：Request For Comment，请求评论文档，目的是解决因特网先驱者们面临的网络和协议问题</p>
-<p><strong>URL</strong> : uniform resource locator,统一资源定位系统</p>
-<p><strong>DSL</strong> ：Digital Subscriber Line，数字用户线</p>
-<p><strong>DSLAM</strong> ：数字用户线接入复用器</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" data-id="claxh1r2p0001p0m6bd4rcqp2" data-title="重要计算机术语缩写" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-git问题集锦" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" class="article-date">
-  <time class="dt-published" datetime="2022-11-11T13:30:58.000Z" itemprop="datePublished">2022-11-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">git问题集锦</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="工作区、暂存区、版本库"><a href="#工作区、暂存区、版本库" class="headerlink" title="工作区、暂存区、版本库"></a>工作区、暂存区、版本库</h1><ul>
-<li>工作区：就是你在电脑里能看到的目录。</li>
-<li>暂存区：英文叫 stage 或 index。一般存放在 .git 目录下的index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。</li>
-<li>版本库：工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库。<br><img src="/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6.assets/image-20221111215622250.png" alt="image-20221111215622250"></li>
-</ul>
-<p><img src="/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6.assets/image-20221111215654411.png" alt="image-20221111215654411"></p>
-<h2 id="1、提交代码到仓库"><a href="#1、提交代码到仓库" class="headerlink" title="1、提交代码到仓库"></a>1、提交代码到仓库</h2><p>1）克隆 或 拉取最新代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//克隆</span><br><span class="line">git clone http://xxx</span><br><span class="line"></span><br><span class="line">//拉取</span><br><span class="line">git pull http://xxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>2）添加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx</span><br></pre></td></tr></table></figure>
-
-<p>3）描述信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;提交&quot;</span><br></pre></td></tr></table></figure>
-
-<p>4）推送到远程</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、pull拉取最新代码"><a href="#2、pull拉取最新代码" class="headerlink" title="2、pull拉取最新代码"></a>2、pull拉取最新代码</h2><p>本地仓库的代码还未被更新，此时：</p>
-<p>（1）更新远程仓库的代码为最新的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
-
-<p>(2) 让本地代码与origin&#x2F;master完全相同</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
-
-<p>(3) git pull 拉取远程代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
-
-<p>(4)git merge将暂存区代码更新到本地工作区</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge master</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、关联仓库并上传代码"><a href="#3、关联仓库并上传代码" class="headerlink" title="3、关联仓库并上传代码"></a>3、关联仓库并上传代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://gitee.com/xxx/xxx.git</span><br><span class="line">git push -u origin &quot;master&quot;</span><br></pre></td></tr></table></figure>
-
-<p>查看关联仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v	</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、关联已有仓库并提交代码"><a href="#4、关联已有仓库并提交代码" class="headerlink" title="4、关联已有仓库并提交代码"></a>4、关联已有仓库并提交代码</h2><p>第一步：找到适合位置，右键打开git工具</p>
-<p>第二步：克隆或拉取代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone http://xxx.git</span><br><span class="line"></span><br><span class="line">git pull http://xxx.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>第三步：创建和切换分支</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.【git branch】查看一下本地分支，再【git branch -a】查看一下远程分支，对比下，远程存在哪些本地没有的新分支.</span><br><span class="line"></span><br><span class="line">2.将某个远程主机的更新，全部取回本地：【git fetch】</span><br><span class="line"></span><br><span class="line">3.再次查看远程分支：【git branch -a】 发现远程的分支已经可以看见了</span><br><span class="line"></span><br><span class="line">4.拉取远程分支到本地：</span><br><span class="line">创建远程分支并切换到该分支:【git checkout -b (远程分支名)】 </span><br><span class="line">拉取远程分支代码到本地分支：【git pull origin (远程分支名称)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>第四步、将要上传的代码拷贝到当前目录下</p>
-<p>第五步、上传并提交代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git add xxx/</span><br><span class="line"></span><br><span class="line">git commit -m &quot;init-1.0&quot;</span><br><span class="line"></span><br><span class="line">git push origin feature</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git branch -r  //查看远程所有分支</span><br><span class="line"></span><br><span class="line">git branch //查看本地所有分支</span><br><span class="line"></span><br><span class="line">git branch -a //查看本地及远程的所有分支</span><br><span class="line"></span><br><span class="line">git fetch  //将某个远程主机的更新，全部取回本地</span><br><span class="line"></span><br><span class="line">git remote -v //查看仓库关联情况</span><br><span class="line"></span><br><span class="line">git status //查看git状态</span><br><span class="line"></span><br><span class="line">git remote remove origin//取消与现有仓库的链接</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" data-id="cladc1a220000ssm6g7il1k2n" data-title="git问题集锦" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java类的使用心得" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="article-date">
-  <time class="dt-published" datetime="2022-11-07T13:11:43.000Z" itemprop="datePublished">2022-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">java类的使用心得</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="java-text包"><a href="#java-text包" class="headerlink" title="java.text包"></a>java.text包</h1><h2 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h2><p><code>SimpleDateFormat</code>是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。</p>
-<p><code>SimpleDateFormat</code>允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种<code>getTimeInstance</code> ， <code>getDateInstance</code> ，或<code>getDateTimeInstance</code>在<code>DateFormat</code> 。 这些类方法中的每一个都可以返回使用默认格式模式初始化的日期&#x2F;时间格式化程序。 您可以根据需要使用<code>applyPattern</code>方法修改格式模式。 有关使用这些方法的更多信息，请参见<a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/DateFormat.html"><code>DateFormat</code></a> 。</p>
-<p><strong>构造方法：</strong></p>
-<ul>
-<li><pre><code class="java">SimpleDateFormat（）//构造一个SimpleDateFormate使用默认模式和日期格式符号为默认的FORMAT区域设置
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat（String pattern）//使用给定模式SimpleDateFormat并使用默认的 FORMAT语言环境的默认日期格式符号。</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-<li><p>&#96;&#96;&#96;java<br>SimpleDateFormat（String pattern, DateFormatSymbols formatSymbols）&#x2F;&#x2F;使用给定的模式和日期格式符号构造一个SimpleDateFormat</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat(String pattern, Locale locale)//构造一个 `SimpleDateFormat`使用给定的模式和给定的区域设置的默认日期格式符号。</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="java-lang-包"><a href="#java-lang-包" class="headerlink" title="java. lang 包"></a>java. lang 包</h1><h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>对比String类，相当于是一个容器，其内容对比与String的不可改变，StringBuilder是可以改变的</p>
-<p>1.在需要字符串拼接和字符串反转的情况下会用到StringBuilder</p>
-<h2 id="StringJoiner"><a href="#StringJoiner" class="headerlink" title="StringJoiner"></a>StringJoiner</h2><ul>
-<li>StringJoiner和StringBuilder一样，也可以看做是一个容器，创建之后里面的内容是可变的；</li>
-<li>作用：提高字符串的操作效率，而且代码编写特别简洁；</li>
-<li>JDK8出现的</li>
-<li>在拼接中要加上开头结尾时使用</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" data-id="cladc1a270001ssm606o574e6" data-title="java类的使用心得" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hexo常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time class="dt-published" datetime="2022-11-03T03:59:51.000Z" itemprop="datePublished">2022-11-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>1、hexo init<br> hexo init 命令用于初始化一个本地文件夹为网站的根目录<br>1<br>2、hexo new<br>$ hexo new title 新建一篇文章<br>1<br>3、hexo generate<br>$ hexo generate 可以简写成 hexo g<br>该命令用于生成静态文件</p>
-<p>4、hexo server<br>$ hexo server 命令用于启动本地服务器，一般可以简写成 hexo s<br>可以加一些参数<br>-p    选项，指定服务器端口，默认为 4000<br>-i    选项，指定服务器 IP 地址，默认为 0.0.0.0<br>-s    选项，静态模式 ，仅提供 public 文件夹中的文件并禁用文件监视<br>1</p>
-<p>5、hexo deploy<br>$ hexo deploy 命令用于部署网站，一般可以简写成 hexo d<br>1<br>6、hexo clean<br>$ hexo clean 命令用于清理缓存文件，是一个比较常用的命令<br>1<br>7、hexo –safe<br>$ hexo –safe 表示安全模式，用于禁用加载插件和脚本<br>1<br>8、hexo –debug<br>$ hexo –debug 表示调试模式，用于将消息详细记录到终端和 debug.log 文件<br>1<br>9、hexo –silent<br>$ hexo –silent  表示静默模式，用于静默输出到终端</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cla0jxfeq0000hkm67w5m4ntc" data-title="hexo常用命令" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         
