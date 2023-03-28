@@ -71,6 +71,180 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-adb-命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2022-11-26T05:01:48.000Z" itemprop="datePublished">2022-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/">adb 命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>想看比较全又不用百度的adb命令 ：adb help<br>打印本机所有软件包  adb shell pm list packages<br>输出和安装包相关联的文件 adb shell pm list packages -f<br>打印输出第三方安装包 adb shell pm list packages -3<br>输出本机禁用的包 adb shell pm list packages -d<br>输出本机启用的包 adb shell pm list packages -e<br>查看ADB版本：adb version<br>查看手机设备：adb devices<br>查看设备型号：adb shell getprop ro.product.model<br>查看电池信息：adb shell dumpsys battery<br>查看设备ID：adb shell settings get secure android_id<br>查看设备IMEI：adb shell dumpsys iphonesubinfo （好像看不了，哈哈）<br>查看Android版本：adb shell getprop ro.build.version.release<br>查看手机网络信息：adb shell ifconfig<br>查看设备日志：adb logcat （log疯狂刷）<br>重启手机设备：adb reboot<br>安装一个apk：adb install &#x2F;path&#x2F;demo.apk<br>卸载一个apk：adb uninstall com.niubi.dadada(包名)<br>保留原数据的话 adb uninstall -k 包名<br>查看系统运行进程：adb shell ps<br>查看系统磁盘情况：adb shell ls &#x2F;path&#x2F;<br>手机设备截屏：adb shell screencap -p &#x2F;sdcard&#x2F;aa.png<br>手机文件下载到电脑：adb pull &#x2F;sdcard&#x2F;aa.png .&#x2F;<br>电脑文件上传到手机：adb push aa.png &#x2F;data&#x2F;local&#x2F;<br>手机设备录像：adb shell screenrecord &#x2F;sdcard&#x2F;ab.mp4<br>手机屏幕分辨率：adb shell wm size<br>手机屏幕密度：adb shell wm density<br>连接设备 ： adb connect [[:]]（默认端口号是：5555）<br>adb disconnect &lt;设备的IP地址&gt;:端口号 ：adb断开某设备<br>adb root：进入root权限</p>
+<p>adb reboot：重启设备</p>
+<p>adb：remount 获取读写权限</p>
+<p>adb push xxx.apk system&#x2F;app：可以指定安装位置，如系统app位置：system&#x2F;app<br>adb pull &#x2F;phone&#x2F;sdcard&#x2F;dididi.apk(手机文件地址)  C:\Users\Administrator\Desktop :将手机里文件拉取到电脑<br>adb push a.txt &#x2F;mnt&#x2F;sdcard&#x2F;  ：将电脑某一目录下的文件a.txt 传到手机指定目录mnt&#x2F;sdcad目录中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" data-id="clfo0vumj000854m6fevlhv35" data-title="adb 命令" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-重要计算机文件缩写" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" class="article-date">
+  <time class="dt-published" datetime="2022-11-18T14:35:49.000Z" itemprop="datePublished">2022-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/">重要计算机术语缩写</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机网络相关"><a href="#计算机网络相关" class="headerlink" title="计算机网络相关"></a>计算机网络相关</h1><p><strong>TCP</strong> : Transmission Control Protocol，传输控制协议</p>
+<p>**IP **: Internet Protocol，网际协议</p>
+<p>**IETF **：Internet Engineering Task Force，因特网工程任务组</p>
+<p>**RFC **：Request For Comment，请求评论文档，目的是解决因特网先驱者们面临的网络和协议问题</p>
+<p><strong>URL</strong> : uniform resource locator,统一资源定位系统</p>
+<p><strong>DSL</strong> ：Digital Subscriber Line，数字用户线</p>
+<p><strong>DSLAM</strong> ：数字用户线接入复用器</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" data-id="clfo0vumq000k54m63cxveoko" data-title="重要计算机术语缩写" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-git问题集锦" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" class="article-date">
+  <time class="dt-published" datetime="2022-11-11T13:30:58.000Z" itemprop="datePublished">2022-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/">git问题集锦</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="工作区、暂存区、版本库"><a href="#工作区、暂存区、版本库" class="headerlink" title="工作区、暂存区、版本库"></a>工作区、暂存区、版本库</h1><ul>
+<li>工作区：就是你在电脑里能看到的目录。</li>
+<li>暂存区：英文叫 stage 或 index。一般存放在 .git 目录下的index 文件（.git&#x2F;index）中，所以我们把暂存区有时也叫作索引（index）。</li>
+<li>版本库：工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库。<br><img src="/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6.assets/image-20221111215622250.png" alt="image-20221111215622250"></li>
+</ul>
+<p><img src="/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6.assets/image-20221111215654411.png" alt="image-20221111215654411"></p>
+<h2 id="1、提交代码到仓库"><a href="#1、提交代码到仓库" class="headerlink" title="1、提交代码到仓库"></a>1、提交代码到仓库</h2><p>1）克隆 或 拉取最新代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//克隆</span><br><span class="line">git clone http://xxx</span><br><span class="line"></span><br><span class="line">//拉取</span><br><span class="line">git pull http://xxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2）添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx</span><br></pre></td></tr></table></figure>
+
+<p>3）描述信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;提交&quot;</span><br></pre></td></tr></table></figure>
+
+<p>4）推送到远程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、pull拉取最新代码"><a href="#2、pull拉取最新代码" class="headerlink" title="2、pull拉取最新代码"></a>2、pull拉取最新代码</h2><p>本地仓库的代码还未被更新，此时：</p>
+<p>（1）更新远程仓库的代码为最新的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
+
+<p>(2) 让本地代码与origin&#x2F;master完全相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
+
+<p>(3) git pull 拉取远程代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+
+<p>(4)git merge将暂存区代码更新到本地工作区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge master</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、关联仓库并上传代码"><a href="#3、关联仓库并上传代码" class="headerlink" title="3、关联仓库并上传代码"></a>3、关联仓库并上传代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://gitee.com/xxx/xxx.git</span><br><span class="line">git push -u origin &quot;master&quot;</span><br></pre></td></tr></table></figure>
+
+<p>查看关联仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v	</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、关联已有仓库并提交代码"><a href="#4、关联已有仓库并提交代码" class="headerlink" title="4、关联已有仓库并提交代码"></a>4、关联已有仓库并提交代码</h2><p>第一步：找到适合位置，右键打开git工具</p>
+<p>第二步：克隆或拉取代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone http://xxx.git</span><br><span class="line"></span><br><span class="line">git pull http://xxx.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三步：创建和切换分支</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.【git branch】查看一下本地分支，再【git branch -a】查看一下远程分支，对比下，远程存在哪些本地没有的新分支.</span><br><span class="line"></span><br><span class="line">2.将某个远程主机的更新，全部取回本地：【git fetch】</span><br><span class="line"></span><br><span class="line">3.再次查看远程分支：【git branch -a】 发现远程的分支已经可以看见了</span><br><span class="line"></span><br><span class="line">4.拉取远程分支到本地：</span><br><span class="line">创建远程分支并切换到该分支:【git checkout -b (远程分支名)】 </span><br><span class="line">拉取远程分支代码到本地分支：【git pull origin (远程分支名称)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第四步、将要上传的代码拷贝到当前目录下</p>
+<p>第五步、上传并提交代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git add xxx/</span><br><span class="line"></span><br><span class="line">git commit -m &quot;init-1.0&quot;</span><br><span class="line"></span><br><span class="line">git push origin feature</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git branch -r  //查看远程所有分支</span><br><span class="line"></span><br><span class="line">git branch //查看本地所有分支</span><br><span class="line"></span><br><span class="line">git branch -a //查看本地及远程的所有分支</span><br><span class="line"></span><br><span class="line">git fetch  //将某个远程主机的更新，全部取回本地</span><br><span class="line"></span><br><span class="line">git remote -v //查看仓库关联情况</span><br><span class="line"></span><br><span class="line">git status //查看git状态</span><br><span class="line"></span><br><span class="line">git remote remove origin//取消与现有仓库的链接</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" data-id="clfo0vuml000c54m6fopfcsdn" data-title="git问题集锦" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-java类的使用心得" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="article-date">
@@ -527,62 +701,11 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/21/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-09-21T08:15:17.029Z" itemprop="datePublished">2022-09-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/21/hello-world/" data-id="clfo0vumm000d54m64plgbbq7" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -628,23 +751,23 @@
       <ul>
         
           <li>
+            <a href="/2023/03/27/SpringBootWeb%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/">SpringBootWeb请求响应</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/27/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8C%87%E4%BB%A4/">Windows命令行指令</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/26/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2023/03/25/Maven/">(no title)</a>
           </li>
         
           <li>
             <a href="/2023/03/22/Java-web/">Java web</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/09/commons-io%E6%95%B4%E7%90%86%E7%9A%84%E6%96%87%E6%A1%A3/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-          </li>
-        
-          <li>
-            <a href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/">java 常识内容</a>
           </li>
         
       </ul>

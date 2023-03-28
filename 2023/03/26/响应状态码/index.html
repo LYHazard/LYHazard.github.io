@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>adb 命令 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="想看比较全又不用百度的adb命令 ：adb help打印本机所有软件包  adb shell pm list packages输出和安装包相关联的文件 adb shell pm list packages -f打印输出第三方安装包 adb shell pm list packages -3输出本机禁用的包 adb shell pm list packages -d输出本机启用的包 adb shel">
+  <meta name="description" content="一、状态码大类   状态码分类 说明    1xx 响应中——临时状态码，表示请求已经接受，告诉客户端应该继续请求或者如果它已经完成则忽略它   2xx 成功——表示请求已经被成功接收，处理已完成   3xx 重定向——重定向到其它地方：它让客户端再发起一个请求以完成整个处理。   4xx 客户端错误——处理发生错误，责任在客户端，如：客户端的请求一个不存在的资源，客户端未被授权，禁止访问等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="adb 命令">
-<meta property="og:url" content="http://example.com/2022/11/26/adb-%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/03/26/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="想看比较全又不用百度的adb命令 ：adb help打印本机所有软件包  adb shell pm list packages输出和安装包相关联的文件 adb shell pm list packages -f打印输出第三方安装包 adb shell pm list packages -3输出本机禁用的包 adb shell pm list packages -d输出本机启用的包 adb shel">
+<meta property="og:description" content="一、状态码大类   状态码分类 说明    1xx 响应中——临时状态码，表示请求已经接受，告诉客户端应该继续请求或者如果它已经完成则忽略它   2xx 成功——表示请求已经被成功接收，处理已完成   3xx 重定向——重定向到其它地方：它让客户端再发起一个请求以完成整个处理。   4xx 客户端错误——处理发生错误，责任在客户端，如：客户端的请求一个不存在的资源，客户端未被授权，禁止访问等">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-26T05:01:48.000Z">
-<meta property="article:modified_time" content="2022-11-26T05:07:45.778Z">
+<meta property="article:published_time" content="2023-03-26T06:46:19.706Z">
+<meta property="article:modified_time" content="2023-03-14T07:02:44.100Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,37 +73,121 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-adb-命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-响应状态码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time class="dt-published" datetime="2022-11-26T05:01:48.000Z" itemprop="datePublished">2022-11-26</time>
+    <a href="/2023/03/26/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2023-03-26T06:46:19.706Z" itemprop="datePublished">2023-03-26</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      adb 命令
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>想看比较全又不用百度的adb命令 ：adb help<br>打印本机所有软件包  adb shell pm list packages<br>输出和安装包相关联的文件 adb shell pm list packages -f<br>打印输出第三方安装包 adb shell pm list packages -3<br>输出本机禁用的包 adb shell pm list packages -d<br>输出本机启用的包 adb shell pm list packages -e<br>查看ADB版本：adb version<br>查看手机设备：adb devices<br>查看设备型号：adb shell getprop ro.product.model<br>查看电池信息：adb shell dumpsys battery<br>查看设备ID：adb shell settings get secure android_id<br>查看设备IMEI：adb shell dumpsys iphonesubinfo （好像看不了，哈哈）<br>查看Android版本：adb shell getprop ro.build.version.release<br>查看手机网络信息：adb shell ifconfig<br>查看设备日志：adb logcat （log疯狂刷）<br>重启手机设备：adb reboot<br>安装一个apk：adb install &#x2F;path&#x2F;demo.apk<br>卸载一个apk：adb uninstall com.niubi.dadada(包名)<br>保留原数据的话 adb uninstall -k 包名<br>查看系统运行进程：adb shell ps<br>查看系统磁盘情况：adb shell ls &#x2F;path&#x2F;<br>手机设备截屏：adb shell screencap -p &#x2F;sdcard&#x2F;aa.png<br>手机文件下载到电脑：adb pull &#x2F;sdcard&#x2F;aa.png .&#x2F;<br>电脑文件上传到手机：adb push aa.png &#x2F;data&#x2F;local&#x2F;<br>手机设备录像：adb shell screenrecord &#x2F;sdcard&#x2F;ab.mp4<br>手机屏幕分辨率：adb shell wm size<br>手机屏幕密度：adb shell wm density<br>连接设备 ： adb connect [[:]]（默认端口号是：5555）<br>adb disconnect &lt;设备的IP地址&gt;:端口号 ：adb断开某设备<br>adb root：进入root权限</p>
-<p>adb reboot：重启设备</p>
-<p>adb：remount 获取读写权限</p>
-<p>adb push xxx.apk system&#x2F;app：可以指定安装位置，如系统app位置：system&#x2F;app<br>adb pull &#x2F;phone&#x2F;sdcard&#x2F;dididi.apk(手机文件地址)  C:\Users\Administrator\Desktop :将手机里文件拉取到电脑<br>adb push a.txt &#x2F;mnt&#x2F;sdcard&#x2F;  ：将电脑某一目录下的文件a.txt 传到手机指定目录mnt&#x2F;sdcad目录中</p>
+        <h2 id="一、状态码大类"><a href="#一、状态码大类" class="headerlink" title="一、状态码大类"></a>一、状态码大类</h2><table>
+<thead>
+<tr>
+<th>状态码分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td><strong>响应中</strong>——临时状态码，表示请求已经接受，告诉客户端应该继续请求或者如果它已经完成则忽略它</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td><strong>成功</strong>——表示请求已经被成功接收，处理已完成</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td><strong>重定向</strong>——重定向到其它地方：它让客户端再发起一个请求以完成整个处理。</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td><strong>客户端错误</strong>——处理发生错误，责任在客户端，如：客户端的请求一个不存在的资源，客户端未被授权，禁止访问等</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td><strong>服务器端错误</strong>——处理发生错误，责任在服务端，如：服务端抛出异常，路由出错，HTTP版本不支持等</td>
+</tr>
+</tbody></table>
+<h2 id="二、常见的响应状态码"><a href="#二、常见的响应状态码" class="headerlink" title="二、常见的响应状态码"></a>二、常见的响应状态码</h2><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>英文描述</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;200&#x3D;&#x3D;</td>
+<td><strong><code>OK</code></strong></td>
+<td>客户端请求成功，即<strong>处理成功</strong>，这是我们最想看到的状态码</td>
+</tr>
+<tr>
+<td>302</td>
+<td><strong><code>Found</code></strong></td>
+<td>指示所请求的资源已移动到由<code>Location</code>响应头给定的 URL，浏览器会自动重新访问到这个页面</td>
+</tr>
+<tr>
+<td>304</td>
+<td><strong><code>Not Modified</code></strong></td>
+<td>告诉客户端，你请求的资源至上次取得后，服务端并未更改，你直接用你本地缓存吧。隐式重定向</td>
+</tr>
+<tr>
+<td>400</td>
+<td><strong><code>Bad Request</code></strong></td>
+<td>客户端请求有<strong>语法错误</strong>，不能被服务器所理解</td>
+</tr>
+<tr>
+<td>403</td>
+<td><strong><code>Forbidden</code></strong></td>
+<td>服务器收到请求，但是<strong>拒绝提供服务</strong>，比如：没有权限访问相关资源</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;404&#x3D;&#x3D;</td>
+<td><strong><code>Not Found</code></strong></td>
+<td><strong>请求资源不存在</strong>，一般是URL输入有误，或者网站资源被删除了</td>
+</tr>
+<tr>
+<td>405</td>
+<td><strong><code>Method Not Allowed</code></strong></td>
+<td>请求方式有误，比如应该用GET请求方式的资源，用了POST</td>
+</tr>
+<tr>
+<td>428</td>
+<td><strong><code>Precondition Required</code></strong></td>
+<td><strong>服务器要求有条件的请求</strong>，告诉客户端要想访问该资源，必须携带特定的请求头</td>
+</tr>
+<tr>
+<td>429</td>
+<td><strong><code>Too Many Requests</code></strong></td>
+<td>指示用户在给定时间内发送了<strong>太多请求</strong>（“限速”），配合 Retry-After(多长时间后可以请求)响应头一起使用</td>
+</tr>
+<tr>
+<td>431</td>
+<td><strong><code> Request Header Fields Too Large</code></strong></td>
+<td><strong>请求头太大</strong>，服务器不愿意处理请求，因为它的头部字段太大。请求可以在减少请求头域的大小后重新提交。</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;500&#x3D;&#x3D;</td>
+<td><strong><code>Internal Server Error</code></strong></td>
+<td><strong>服务器发生不可预期的错误</strong>。服务器出异常了，赶紧看日志去吧</td>
+</tr>
+<tr>
+<td>503</td>
+<td><strong><code>Service Unavailable</code></strong></td>
+<td><strong>服务器尚未准备好处理请求</strong>，服务器刚刚启动，还未初始化好</td>
+</tr>
+</tbody></table>
+<p>状态码大全：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/chapter/13553">https://cloud.tencent.com/developer/chapter/13553</a> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/26/adb-%E5%91%BD%E4%BB%A4/" data-id="clfo0vumj000854m6fevlhv35" data-title="adb 命令" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/26/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81/" data-id="clfrolg430002bkm6f1io4m48" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -113,19 +197,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/12/10/%E6%BA%90%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/03/27/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8C%87%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          源码、补码、反码
+          Windows命令行指令
         
       </div>
     </a>
   
   
-    <a href="/2022/11/18/%E9%87%8D%E8%A6%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%87%E4%BB%B6%E7%BC%A9%E5%86%99/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/03/25/Maven/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">重要计算机术语缩写</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>
