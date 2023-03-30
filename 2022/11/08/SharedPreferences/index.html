@@ -4,18 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>java类的使用心得 | Hexo</title>
+  <title>SharedPreferences | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="java.text包SimpleDateFormatSimpleDateFormat是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。 SimpleDateFormat允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种getTimeInstance ， getDateInstance ，或ge">
+  <meta name="description" content="一、将数据存储到SharedPreference中​	想要使用SharedPreference存储数据，首先需要获取SharedPreference对象。Android中主要提供了以下两种方法用于得到SharedPreferences对象。 1.1  Context类中的**getSharedPreferences()**方法此方法接收两个参数：第一个参数用于指定SharedPreferences">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java类的使用心得">
-<meta property="og:url" content="http://example.com/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/index.html">
+<meta property="og:title" content="SharedPreferences">
+<meta property="og:url" content="http://example.com/2022/11/08/SharedPreferences/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="java.text包SimpleDateFormatSimpleDateFormat是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。 SimpleDateFormat允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种getTimeInstance ， getDateInstance ，或ge">
+<meta property="og:description" content="一、将数据存储到SharedPreference中​	想要使用SharedPreference存储数据，首先需要获取SharedPreference对象。Android中主要提供了以下两种方法用于得到SharedPreferences对象。 1.1  Context类中的**getSharedPreferences()**方法此方法接收两个参数：第一个参数用于指定SharedPreferences">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-07T13:11:43.000Z">
-<meta property="article:modified_time" content="2023-01-04T13:05:03.192Z">
+<meta property="article:published_time" content="2022-11-08T07:06:07.000Z">
+<meta property="article:modified_time" content="2023-03-30T02:08:38.830Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="不同于文件的存储方式，SharedPreferences是使用键值对的方式来存储数据的。也就是说，当保存一条数据的时候，需要给这条数据提供一个对应的键，这样在读取数据的时候就可以通过这个键把相应的值取出来。而且SharedPreferences还支持多种不同的数据类型存储，如果存储的数据类型是整型，那么读取出来的数据也是整型的；如果存储的数据是一个字符串，那么读取出来的数据仍然是字符串">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -73,10 +74,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-java类的使用心得" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-SharedPreferences" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="article-date">
-  <time class="dt-published" datetime="2022-11-07T13:11:43.000Z" itemprop="datePublished">2022-11-07</time>
+    <a href="/2022/11/08/SharedPreferences/" class="article-date">
+  <time class="dt-published" datetime="2022-11-08T07:06:07.000Z" itemprop="datePublished">2022-11-08</time>
 </a>
     
   </div>
@@ -87,7 +88,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      java类的使用心得
+      SharedPreferences
     </h1>
   
 
@@ -95,52 +96,44 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="java-text包"><a href="#java-text包" class="headerlink" title="java.text包"></a>java.text包</h1><h2 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h2><p><code>SimpleDateFormat</code>是一个具体的类，用于以区域设置敏感的方式格式化和解析日期。 它允许格式化（日期文本），解析（文本日期）和归一化。</p>
-<p><code>SimpleDateFormat</code>允许您从选择日期时间格式化的任何用户定义的模式开始。 不过，建议您创建一个日期-时间格式有两种<code>getTimeInstance</code> ， <code>getDateInstance</code> ，或<code>getDateTimeInstance</code>在<code>DateFormat</code> 。 这些类方法中的每一个都可以返回使用默认格式模式初始化的日期&#x2F;时间格式化程序。 您可以根据需要使用<code>applyPattern</code>方法修改格式模式。 有关使用这些方法的更多信息，请参见<a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/DateFormat.html"><code>DateFormat</code></a> 。</p>
-<p><strong>构造方法：</strong></p>
-<ul>
-<li><pre><code class="java">SimpleDateFormat（）//构造一个SimpleDateFormate使用默认模式和日期格式符号为默认的FORMAT区域设置
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat（String pattern）//使用给定模式SimpleDateFormat并使用默认的 FORMAT语言环境的默认日期格式符号。</span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-<li><p>&#96;&#96;&#96;java<br>SimpleDateFormat（String pattern, DateFormatSymbols formatSymbols）&#x2F;&#x2F;使用给定的模式和日期格式符号构造一个SimpleDateFormat</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* ```java</span><br><span class="line">  SimpleDateFormat(String pattern, Locale locale)//构造一个 `SimpleDateFormat`使用给定的模式和给定的区域设置的默认日期格式符号。</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="java-lang-包"><a href="#java-lang-包" class="headerlink" title="java. lang 包"></a>java. lang 包</h1><h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>对比String类，相当于是一个容器，其内容对比与String的不可改变，StringBuilder是可以改变的</p>
-<p>1.在需要字符串拼接和字符串反转的情况下会用到StringBuilder</p>
-<h2 id="StringJoiner"><a href="#StringJoiner" class="headerlink" title="StringJoiner"></a>StringJoiner</h2><ul>
-<li>StringJoiner和StringBuilder一样，也可以看做是一个容器，创建之后里面的内容是可变的；</li>
-<li>作用：提高字符串的操作效率，而且代码编写特别简洁；</li>
-<li>JDK8出现的</li>
-<li>在拼接中要加上开头结尾时使用</li>
-</ul>
+        <h2 id="一、将数据存储到SharedPreference中"><a href="#一、将数据存储到SharedPreference中" class="headerlink" title="一、将数据存储到SharedPreference中"></a>一、将数据存储到SharedPreference中</h2><p>​	想要使用SharedPreference存储数据，首先需要获取SharedPreference对象。Android中主要提供了以下两种方法用于得到SharedPreferences对象。</p>
+<h3 id="1-1-Context类中的-getSharedPreferences-方法"><a href="#1-1-Context类中的-getSharedPreferences-方法" class="headerlink" title="1.1  Context类中的**getSharedPreferences()**方法"></a>1.1  <strong>Context</strong>类中的**getSharedPreferences()**方法</h3><p>此方法接收两个参数：第一个参数用于指定SharedPreferences文件的名称，如果指定的文件不存在则会创建一个，SharedPreferences文件都是存放在&#x2F;data&#x2F;data&#x2F;<package name>&#x2F;shared_prefs&#x2F;目录下的；第二个参数用于指定操作模式，目前只有默认的MODE_PRIVATE这一种模式可选，它和直接传入0的效果是相同的，表示只有当前的应用程序才可以对这个SharedPreferences文件进行读写。其他几种操作模式均已被废弃，MODE_WORLD_READABLE和MODE_WORLD_WRITEABLE这两种模式是在Android 4.2版本中被废弃的，MODE_MULTI_PROCESS模式是在Android 6.0版本中被废弃的。</p>
+<h3 id="1-2-Activity类中的-getPreferences-方法"><a href="#1-2-Activity类中的-getPreferences-方法" class="headerlink" title="1.2  Activity类中的**getPreferences()**方法"></a>1.2  <strong>Activity</strong>类中的**getPreferences()**方法</h3><p>这个方法和Context中的getSharedPreferences()方法很相似，不过它只接收一个操作模式参数，因为使用这个方法时会自动将当前Activity的类名作为SharedPreferences的文件名。</p>
+<p>​	得到SharedPreferences对象后，就可以开始向SharedPreferences文件中存储数据了，主要可以分为三步实现</p>
+<p> （1）调用SharedPreference对象的edit()方法获取一个SharedPreferences.Editor对象</p>
+<p>​    2）向SharedPreferences.Editor对象中添加数据，比如添加一个布尔型数据就使用putBoolean()方法，添加一个字符串则使用putString()方法，以此类推。</p>
+<p>(3) 调用apply()方法将添加的数据提交，从而完成数据存储操作</p>
+<h3 id="1-3-SharedPreferences查找是否存在该对象的方法"><a href="#1-3-SharedPreferences查找是否存在该对象的方法" class="headerlink" title="1.3 SharedPreferences查找是否存在该对象的方法"></a>1.3 SharedPreferences查找是否存在该对象的方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences.contanins(key)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" data-id="clfo0vumn000g54m6bimrcmwu" data-title="java类的使用心得" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/08/SharedPreferences/" data-id="clfuh8rut0000hom6b2p40hem" data-title="SharedPreferences" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8D%E5%90%8C%E4%BA%8E%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%EF%BC%8CSharedPreferences%E6%98%AF%E4%BD%BF%E7%94%A8%E9%94%AE%E5%80%BC%E5%AF%B9%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%EF%BC%8C%E5%BD%93%E4%BF%9D%E5%AD%98%E4%B8%80%E6%9D%A1%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E9%9C%80%E8%A6%81%E7%BB%99%E8%BF%99%E6%9D%A1%E6%95%B0%E6%8D%AE%E6%8F%90%E4%BE%9B%E4%B8%80%E4%B8%AA%E5%AF%B9%E5%BA%94%E7%9A%84%E9%94%AE%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%9C%A8%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%B1%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E8%BF%99%E4%B8%AA%E9%94%AE%E6%8A%8A%E7%9B%B8%E5%BA%94%E7%9A%84%E5%80%BC%E5%8F%96%E5%87%BA%E6%9D%A5%E3%80%82%E8%80%8C%E4%B8%94SharedPreferences%E8%BF%98%E6%94%AF%E6%8C%81%E5%A4%9A%E7%A7%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%82%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%98%AF%E6%95%B4%E5%9E%8B%EF%BC%8C%E9%82%A3%E4%B9%88%E8%AF%BB%E5%8F%96%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B9%9F%E6%98%AF%E6%95%B4%E5%9E%8B%E7%9A%84%EF%BC%9B%E5%A6%82%E6%9E%9C%E5%AD%98%E5%82%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E9%82%A3%E4%B9%88%E8%AF%BB%E5%8F%96%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%8D%E7%84%B6%E6%98%AF%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">不同于文件的存储方式，SharedPreferences是使用键值对的方式来存储数据的。也就是说，当保存一条数据的时候，需要给这条数据提供一个对应的键，这样在读取数据的时候就可以通过这个键把相应的值取出来。而且SharedPreferences还支持多种不同的数据类型存储，如果存储的数据类型是整型，那么读取出来的数据也是整型的；如果存储的数据是一个字符串，那么读取出来的数据仍然是字符串</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2022/11/08/SharedPreferences/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/11/11/git%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          SharedPreferences
+          git问题集锦
         
       </div>
     </a>
   
   
-    <a href="/2022/11/03/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/11/07/java%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">hexo常用命令</div>
+      <div class="article-nav-title">java类的使用心得</div>
     </a>
   
 </nav>
