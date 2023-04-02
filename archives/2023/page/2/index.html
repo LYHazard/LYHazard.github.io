@@ -4,17 +4,13 @@
   <meta charset="utf-8">
   
   
-  <title>android:configChanges属性解析 | Hexo</title>
+  <title>Archives: 2023 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="一、configChanges作用Android程序在运行时，一些设备的配置可能会改变，如：横竖屏的切换、键盘的可用性等。这些事件一旦发生，当前活动的Activity会重新启动，其中的过程是：在销毁之前会先调onSaveInstanceState()方法去保存你应用中的一些数据，然后调用onDestroy()方法，最后调用onCreate()、onStart()、onResume()等方法启动一个">
-<meta property="og:type" content="article">
-<meta property="og:title" content="android:configChanges属性解析">
-<meta property="og:url" content="http://example.com/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/archives/2023/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、configChanges作用Android程序在运行时，一些设备的配置可能会改变，如：横竖屏的切换、键盘的可用性等。这些事件一旦发生，当前活动的Activity会重新启动，其中的过程是：在销毁之前会先调onSaveInstanceState()方法去保存你应用中的一些数据，然后调用onDestroy()方法，最后调用onCreate()、onStart()、onResume()等方法启动一个">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-29T09:10:58.000Z">
-<meta property="article:modified_time" content="2022-09-29T10:10:27.028Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,66 +69,45 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-android-configChanges属性解析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" class="article-date">
-  <time class="dt-published" datetime="2022-09-29T09:10:58.000Z" itemprop="datePublished">2022-09-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      android:configChanges属性解析
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/" class="archive-article-date">
+  <time class="dt-published" datetime="2023-01-03T09:46:20.000Z" itemprop="datePublished">Jan 3</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/">java 常识内容</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="一、configChanges作用"><a href="#一、configChanges作用" class="headerlink" title="一、configChanges作用"></a>一、configChanges作用</h1><p>Android程序在运行时，一些设备的配置可能会改变，如：横竖屏的切换、键盘的可用性等。这些事件一旦发生，当前活动的Activity会重新启动，其中的过程是：在销毁之前会先调onSaveInstanceState()方法去保存你应用中的一些数据，然后调用onDestroy()方法，最后调用onCreate()、onStart()、onResume()等方法启动一个新的Activity。<br><strong>如果想让某些配置在发生改变的时候不重启Activity，需要为Activity添加android:configChanges属性</strong>，该属性可以设置多个值，用”|”隔开，例如：“locale|navigation|orientation。设置了android:configChanges属性后，当指定的属性发生变化时，不会去重新启动Activity，而是通知程序去调用Activity的onConfigurationChanged()方法。例如：在进行横竖屏的切换时，会重新启动Activity，而定义了android:configChanges&#x3D;“orientation|keyboardHidden”，就不会重新启动Activity了，而是去调用 onConfigurationChanged()方法。</p>
-<p>简言之，在Activity中添加了android:configChanges属性，目的是当android:configChanges所设置的属性值对应的配置属性发生改变时，通知程序调用 onConfigurationChanged()函数，而不会重启Activity。</p>
-<h1 id="二、-android-configChanges属性可以指定的值"><a href="#二、-android-configChanges属性可以指定的值" class="headerlink" title="二、 android:configChanges属性可以指定的值"></a>二、 android:configChanges属性可以指定的值</h1><p>“mcc” ：国际移动用户识别码所属国家代号改变了—– sim被侦测到了，去更新mcc，mcc是移动用户所属国家代号<br>“mnc”： 国际移动用户识别码的移动网号码改变了—— sim被侦测到了，去更新mnc，MNC是移动网号码，最多由两位数字组成，用于识别移动用户所归属的移动通信网<br>“locae”： 地址改变了—–用户选择了一个新的语言会显示出来</p>
-<p>“touchscreen”： 触摸屏是改变了——通常是不会发生的<br>“keyboard” ：键盘发生了改变—-例如用户用了外部的键盘<br>“keyboardHidden”： 键盘的可用性发生了改变<br>“navigation”： 导航发生了变化—–通常也不会发生<br>“screenLayout”： 屏幕的显示发生了变化——不同的显示被激活<br>“fontScale”： 字体比例发生了变化—-选择了不同的全局字体<br>“uiMode”： 用户的模式发生了变化<br>“orientation”： 屏幕方向改变了<br>“screenSize”： 屏幕大小改变了<br>“smallestScreenSize”： 屏幕的物理大小改变了，如：连接到一个外部的屏幕上</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/29/android-configChanges%E5%B1%9E%E6%80%A7%E8%A7%A3%E6%9E%90/" data-id="clfo0vumk000954m66ye2dcx1" data-title="android:configChanges属性解析" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2022/10/08/EventBus/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          EventBus
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2022/09/24/FragmentManager/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">FragmentManager</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/archives/2023/">&laquo; Prev</a><a class="page-number" href="/archives/2023/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </section>
         
