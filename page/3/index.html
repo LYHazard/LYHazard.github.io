@@ -71,6 +71,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android开发问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-10-15T05:52:15.000Z" itemprop="datePublished">2022-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Android开发问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Android屏保相关"><a href="#Android屏保相关" class="headerlink" title="Android屏保相关"></a>Android屏保相关</h1><ol>
+<li>Android屏保的进程和主程序并不在同一线程上，所以使用Eventbus是无效的</li>
+<li>Android的广播是对进行的别的进程有效的，但对还未开启的进程是无效的，所以广播对于更新屏保的作用也是不大</li>
+<li>Android屏保类似于一个Activity</li>
+<li>registerreceiver和sendbroadcast都是Context类的方法需要先获取context才能使用</li>
+</ol>
+<h1 id="Android布局文件相关"><a href="#Android布局文件相关" class="headerlink" title="Android布局文件相关"></a>Android布局文件相关</h1><h2 id="Imageview"><a href="#Imageview" class="headerlink" title="Imageview"></a>Imageview</h2><ol>
+<li><p>在插入图片后图片会出现莫名其妙的边距的问题，但是打开这张图片的时候图片是没有这个边距的，这时候就需要在imageview控件中添加一行代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>原因是因为图片高度设置的是wrap_content，但有时候图片的质量很高，如果宽度显示的效果是适应屏幕的，那系统就会误以为高度也适应了屏幕。</p>
+<p>所以用android:adjustViewBounds属性用于保持宽高比，图片宽度填满，高度自适配</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" data-id="clfo0vume000154m66f4z652x" data-title="Android开发问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-EventBus" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/10/08/EventBus/" class="article-date">
@@ -478,6 +530,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">PicGo图床搭建</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/02/Mybatis/">Mybatis</a>
           </li>
         
@@ -491,10 +547,6 @@
         
           <li>
             <a href="/2023/03/27/SpringBootWeb%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/">SpringBootWeb请求响应</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/27/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8C%87%E4%BB%A4/">Windows命令行指令</a>
           </li>
         
       </ul>

@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-设计模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2023-01-30T08:26:30.000Z" itemprop="datePublished">2023-01-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="适配器设计模式"><a href="#适配器设计模式" class="headerlink" title="适配器设计模式"></a>适配器设计模式</h1><ol>
+<li>当一个接口中抽象方法过多，但是我只要使用其中一部分的时候，就可以使用适配器模式</li>
+<li>书写步骤</li>
+</ol>
+<ul>
+<li>编写中间类XXXAdapter，实现对应的接口</li>
+<li>对接口中的抽象方法进行空实现</li>
+<li>让真正的实现类继承中间类，并重写需要用的方法</li>
+<li>为避免其他类创建适配器类的对象，中间的适配器类用abstract进行修饰</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clfo0vump000i54m6fgfwehl9" data-title="设计模式" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-java-常识内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/01/03/java-%E5%B8%B8%E8%AF%86%E5%86%85%E5%AE%B9/" class="article-date">
@@ -93,7 +141,25 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="“-x3D-”相关"><a href="#“-x3D-”相关" class="headerlink" title="“&#x3D;”相关"></a>“&#x3D;”相关</h1><p>在数组类型用“&#x3D;” 进行赋值时 此时赋值的内容是地址，其中一个数组的内容改变，另一个的内容也随之改变</p>
+        <h1 id="java常识"><a href="#java常识" class="headerlink" title="java常识"></a>java常识</h1><h2 id="JVM、JRE、JDK的关系"><a href="#JVM、JRE、JDK的关系" class="headerlink" title="JVM、JRE、JDK的关系"></a>JVM、JRE、JDK的关系</h2><p>Java一次编写到处运行，可移植性好，保证这一点的就是java虚拟机JVM</p>
+<p>JRE是运行环境，不能够创建新程序。他是包括JVM的</p>
+<p>JDK是功能最全的，包括编译器和各种⼯具，我们写代码就需要这个了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/Java_base/202304021429604.png" alt="image-20230402142932550"></p>
+<h2 id="private、public、protected、default的区别"><a href="#private、public、protected、default的区别" class="headerlink" title="private、public、protected、default的区别"></a>private、public、protected、default的区别</h2><p><strong>default</strong> ：default是默认的，在同一个包内可见，不用使用任何修饰符</p>
+<p><strong>public</strong> ：public能用来修饰类，在一个java源文件中只能有一个类被声明成public，一旦有一个类为public，那在java源文件的文件名就必须和这个被public所修饰的类的类名相同，否则编译就不能通过。public用来修饰类中的成员（变量和方法），被public所修饰的成员可以在任何类中都能被访问到</p>
+<p><strong>protected</strong> :是受保护的，收到该类所在的包所保护，被protected所修饰的成员会被位于同一个package中的所有类访问到。同时，被protected所修饰的成员也能被该类的所有子类所继承下来</p>
+<p><strong>private</strong> ：私有的，只能在当前类中被访问到，它的作用域最小</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/Java_base/202304021441484.png" alt="image-20230402144145448"></p>
+<h2 id="final、finally、finalize的区别"><a href="#final、finally、finalize的区别" class="headerlink" title="final、finally、finalize的区别"></a>final、finally、finalize的区别</h2><ul>
+<li>final就是不可变的意思，可以修饰变量、方法、和类。修饰变量的时候，这个变量必须初始化，所以也称为常量</li>
+<li>finally是异常处理的一部分，只能用在try&#x2F;catch语句中，并且附带一个语句块表示这段语句一定会被执行，无论是否抛出异常</li>
+<li>finalize java.lang.Object中的⽅法，也就是每⼀个对象都有这个⽅法，⼀个对象的finalize⽅法只会调⽤⼀次，调⽤了不⼀定被回收，因为只有对象被回收的时候才会被回收，就会导致前⾯调⽤，后⾯回收的时候出现问题，不推荐使⽤</li>
+</ul>
+<h2 id="面向对象、面向过程"><a href="#面向对象、面向过程" class="headerlink" title="面向对象、面向过程"></a>面向对象、面向过程</h2><p>⾯向过程的性能⽐较⾼，因为没有实例化等操作，开销⽐较⼩。</p>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>static表示静态，是java中的一个修饰符，可以修饰成员方法，成员变量</p>
+<p>static变量是共享的 放在静态存储区中 </p>
+<p>这就要提到new对象，只有new对象之后，数据存储空间才会被分配，⽅法才能供外界调⽤。但是当没有创建对象的时候也想要调⽤⽅法或者就是想为特定分配存储空间的时候，就需要⽤static。所以有了static，成员变量或者⽅法就可以在没有所属类的时候被访问了</p>
+<h1 id="“-x3D-”相关"><a href="#“-x3D-”相关" class="headerlink" title="“&#x3D;”相关"></a>“&#x3D;”相关</h1><p>在数组类型用“&#x3D;” 进行赋值时 此时赋值的内容是地址，其中一个数组的内容改变，另一个的内容也随之改变</p>
 <h1 id="“-x3D-x3D-”符号的相关"><a href="#“-x3D-x3D-”符号的相关" class="headerlink" title="“&#x3D;&#x3D;”符号的相关"></a>“&#x3D;&#x3D;”符号的相关</h1><p>在比较基本数据类型时”&#x3D;&#x3D;”比较的是数据值</p>
 <p>在比较引用数据类型时“&#x3D;&#x3D;”比较的是地址值</p>
 <h1 id="字符串相关的底层原理"><a href="#字符串相关的底层原理" class="headerlink" title="字符串相关的底层原理"></a>字符串相关的底层原理</h1><h2 id="字符串存储的内存原理"><a href="#字符串存储的内存原理" class="headerlink" title="字符串存储的内存原理"></a>字符串存储的内存原理</h2><ul>
@@ -111,8 +177,6 @@
 <li>添加的内容大于16会扩容（原来的容量*2+2）</li>
 <li>如果扩容之后还不够，以实际长度为准</li>
 </ul>
-<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>static表示静态，是java中的一个修饰符，可以修饰成员方法，成员变量</p>
-<p>static变量是共享的 放在静态存储区中 </p>
 <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h1 id="继承中构造方法的访问特点"><a href="#继承中构造方法的访问特点" class="headerlink" title="继承中构造方法的访问特点"></a>继承中构造方法的访问特点</h1><ul>
 <li>子类不能继承父类的构造方法，但是能够通过super调用</li>
 <li>子类构造方法的第一行，有一个默认的super()</li>
@@ -1783,58 +1847,6 @@
 
 
   
-    <article id="post-Android开发问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2022-10-15T05:52:15.000Z" itemprop="datePublished">2022-10-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/">Android开发问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Android屏保相关"><a href="#Android屏保相关" class="headerlink" title="Android屏保相关"></a>Android屏保相关</h1><ol>
-<li>Android屏保的进程和主程序并不在同一线程上，所以使用Eventbus是无效的</li>
-<li>Android的广播是对进行的别的进程有效的，但对还未开启的进程是无效的，所以广播对于更新屏保的作用也是不大</li>
-<li>Android屏保类似于一个Activity</li>
-<li>registerreceiver和sendbroadcast都是Context类的方法需要先获取context才能使用</li>
-</ol>
-<h1 id="Android布局文件相关"><a href="#Android布局文件相关" class="headerlink" title="Android布局文件相关"></a>Android布局文件相关</h1><h2 id="Imageview"><a href="#Imageview" class="headerlink" title="Imageview"></a>Imageview</h2><ol>
-<li><p>在插入图片后图片会出现莫名其妙的边距的问题，但是打开这张图片的时候图片是没有这个边距的，这时候就需要在imageview控件中添加一行代码</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure>
-
-<p>原因是因为图片高度设置的是wrap_content，但有时候图片的质量很高，如果宽度显示的效果是适应屏幕的，那系统就会误以为高度也适应了屏幕。</p>
-<p>所以用android:adjustViewBounds属性用于保持宽高比，图片宽度填满，高度自适配</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/15/Android%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98/" data-id="clfo0vume000154m66f4z652x" data-title="Android开发问题" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1885,6 +1897,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">PicGo图床搭建</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/02/Mybatis/">Mybatis</a>
           </li>
         
@@ -1898,10 +1914,6 @@
         
           <li>
             <a href="/2023/03/27/SpringBootWeb%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/">SpringBootWeb请求响应</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/27/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8C%87%E4%BB%A4/">Windows命令行指令</a>
           </li>
         
       </ul>

@@ -71,6 +71,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PicGo图床搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2023-04-03T04:20:22.000Z" itemprop="datePublished">2023-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">PicGo图床搭建</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="PicGo-GitHub图床搭建"><a href="#PicGo-GitHub图床搭建" class="headerlink" title="PicGo + GitHub图床搭建"></a>PicGo + GitHub图床搭建</h1><h2 id="1-创建仓库"><a href="#1-创建仓库" class="headerlink" title="1.创建仓库"></a>1.创建仓库</h2><ul>
+<li>在GitHub上点击右上方<code>+</code>按钮，点击 New repository 创建新仓库</li>
+<li>设置仓库名称，描述，是否为私有库，是否添加README.md文件，模板，安全证书</li>
+<li>注意设置为私有库后只有自己能够访问，图片上传上去之后是没法显示的</li>
+<li>创建一个文件夹设置存放目录（在Github上无法创建文件夹，你可以在创建文件的时候通过<code>/</code>来创建一个文件夹）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/MyBatis/202304031222585.png" alt="img"></p>
+<h2 id="申请token"><a href="#申请token" class="headerlink" title="申请token"></a>申请token</h2><p>在GitHub个人设置页面，创建一个访问令牌</p>
+<ul>
+<li>在GitHub上点击头像找到 settings -&gt; Developer settings -&gt; Personal access tokens</li>
+<li>创建一个token用来配置GitHub图床 点击Generate new token</li>
+<li>设置token名称，选者token的权限repo（一般设置可以访问个人信息以及查看，编辑，新增，删除权限就可以啦）</li>
+<li>创建好后会生成一串字符串这就是token复制它（一定要保存好！）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/MyBatis/202304031223475.png" alt="img"></p>
+<h2 id="配置GitHub图床"><a href="#配置GitHub图床" class="headerlink" title="配置GitHub图床"></a>配置GitHub图床</h2><p>在PicGo上对GitHub图床进行设置</p>
+<ul>
+<li>仓库名格式为GitHub用户名&#x2F;仓库名</li>
+<li>分支名为main（GitHub更新后分支名从master改为了main）</li>
+<li>token为刚创建的token，粘贴过来就可以了</li>
+<li>路径（如仓库内创建了目录填写目录文件名称即可）</li>
+<li>自定义域名<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BB%93%E5%BA%93%E5%90%8D/%E5%88%86%E6%94%AF%E5%90%8D">https://cdn.jsdelivr.net/gh/用户名/仓库名/分支名</a><br>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-aBW397cn-1649324675134)(<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/xiaofeilalala/DocsPics/main/imgs/20210522223545.png)]">https://raw.githubusercontent.com/xiaofeilalala/DocsPics/main/imgs/20210522223545.png)]</a></li>
+</ul>
+<h2 id="PicGo设置"><a href="#PicGo设置" class="headerlink" title="PicGo设置"></a>PicGo设置</h2><p>对PicGo进行设置</p>
+<p>打开上传提示（可以看到上传信息，上传失败时会有提示）<br>打开时间戳重命名，防止同名文件上传时，上传失败或者导致图片无法显示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/PicGo/202304031225130.png" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" data-id="clg0bwivc00008km63uzxabxx" data-title="PicGo图床搭建" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Mybatis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/04/02/Mybatis/" class="article-date">
@@ -198,7 +262,7 @@
 </blockquote>
 <h4 id="1-2-4-单元测试"><a href="#1-2-4-单元测试" class="headerlink" title="1.2.4 单元测试"></a>1.2.4 单元测试</h4><p>在创建出来的SpringBoot工程中，在src下的test目录下，已经自动帮我们创建好了测试类 ，并且在测试类上已经添加了注解 @SpringBootTest，代表该测试类已经与SpringBoot整合。 </p>
 <p>该测试类在运行时，会自动通过引导类加载Spring的环境（IOC容器）。我们要测试那个bean对象，就可以直接通过@Autowired注解直接将其注入进行，然后就可以测试了。 </p>
-<p>测试类代码如下： </p>
+<p>测试类代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisQuickstartApplicationTests</span> &#123;</span><br><span class="line">	</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line">	</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testList</span><span class="params">()</span>&#123;</span><br><span class="line">        List&lt;User&gt; userList = userMapper.list();</span><br><span class="line">        <span class="keyword">for</span> (User user : userList) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -444,6 +508,11 @@
 <li>在使用lombok时，还需要安装一个lombok的插件（新版本的IDEA中自带）</li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/MyBatis/202304021413631.png" alt="image-20230402141325572"></p>
+<h1 id="Mybatis基础操作"><a href="#Mybatis基础操作" class="headerlink" title="Mybatis基础操作"></a>Mybatis基础操作</h1><h2 id="1-1-需求"><a href="#1-1-需求" class="headerlink" title="1.1 需求"></a>1.1 需求</h2><p>需求说明：</p>
+<ul>
+<li>根据资料中提供的《tlias智能学习辅助系统》页面原型及需求，完成员工管理的需求开发。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/MyBatis/202304031219470.png" alt="image-20230403121920398"></p>
 
       
     </div>
@@ -3767,54 +3836,6 @@
 
 
   
-    <article id="post-设计模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2023-01-30T08:26:30.000Z" itemprop="datePublished">2023-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="适配器设计模式"><a href="#适配器设计模式" class="headerlink" title="适配器设计模式"></a>适配器设计模式</h1><ol>
-<li>当一个接口中抽象方法过多，但是我只要使用其中一部分的时候，就可以使用适配器模式</li>
-<li>书写步骤</li>
-</ol>
-<ul>
-<li>编写中间类XXXAdapter，实现对应的接口</li>
-<li>对接口中的抽象方法进行空实现</li>
-<li>让真正的实现类继承中间类，并重写需要用的方法</li>
-<li>为避免其他类创建适配器类的对象，中间的适配器类用abstract进行修饰</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="clfo0vump000i54m6fgfwehl9" data-title="设计模式" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -3865,6 +3886,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">PicGo图床搭建</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/02/Mybatis/">Mybatis</a>
           </li>
         
@@ -3878,10 +3903,6 @@
         
           <li>
             <a href="/2023/03/27/SpringBootWeb%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/">SpringBootWeb请求响应</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/27/Windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8C%87%E4%BB%A4/">Windows命令行指令</a>
           </li>
         
       </ul>
