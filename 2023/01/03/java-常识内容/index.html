@@ -15,6 +15,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/Java_base/202304021429604.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/Java_base/202304021441484.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112139014.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112142251.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112159041.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303252201177.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303252202878.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303252203489.png">
@@ -24,7 +27,7 @@
 <meta property="og:image" content="http://example.com/ideaProject/img/04_schema%25E7%25BA%25A6%25E6%259D%259F%25E4%25BB%258B%25E7%25BB%258D.png">
 <meta property="og:image" content="http://example.com/ideaProject/img/05_schema%25E7%25BA%25A6%25E6%259D%259F%25E7%25BC%2596%25E5%2586%2599.png">
 <meta property="article:published_time" content="2023-01-03T09:46:20.000Z">
-<meta property="article:modified_time" content="2023-04-02T06:48:23.144Z">
+<meta property="article:modified_time" content="2023-04-11T14:00:18.380Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/Java_base/202304021429604.png">
@@ -331,8 +334,38 @@
 <li>存满时，会扩容1.5倍（grow（）函数 第一次扩容是添加10长度，第二次之后是通过ArraysSupport的newLength函数如果长度大于1.5倍则选择增加所需长度）</li>
 <li>如果一次添加多个元素，1.5倍还放不下，则新创建数组的长度以实际为准</li>
 </ol>
+<p><strong>当ArrayList中的容量用完之后，则需要对容量进行扩容：</strong></p>
+<p>1、 ArrayList在容量使用完后，会自动创建容量更大的数组，并将原数组中所有元素拷贝过去，导致效率降低</p>
+<p>2、优化：可以使用构造方法ArrayList(int capacity)或ensureCapacity(int capacity)提供一个初始化容量，避免一开始就一直扩容，造成效率降低</p>
+<hr>
+<h4 id="ArrayList构造方法："><a href="#ArrayList构造方法：" class="headerlink" title="ArrayList构造方法："></a>ArrayList构造方法：</h4><ul>
+<li>ArrayList()：创建一个初始化容量为10的空列表</li>
+<li>ArrayList(int initialCapacity)：创建⼀个指定初始化容量为 initialCapacity 的空列表</li>
+<li>ArrayList(Collection&lt;? extends E&gt; c)：创建⼀个包含指定集合中所有元素的列表</li>
+</ul>
+<p><strong>ArrayList优点：</strong></p>
+<ol>
+<li><p>向 ArrayList 末尾添加元素（add() ⽅法）时，效率较⾼ </p>
+</li>
+<li><p>查询效率⾼</p>
+</li>
+</ol>
+<p><strong>ArrayList缺点：</strong></p>
+<ol>
+<li><p>扩容会造成效率较低（可以通过指定初始化容量，在⼀定程度上对其进⾏改进） </p>
+</li>
+<li><p>另外数组⽆法存储⼤数据量（因为很难找到⼀块很⼤的连续的内存空间）</p>
+</li>
+<li><p>向 ArrayList 中间添加元素（add(int index)），需要移动元素，效率较低 </p>
+</li>
+<li><p>但是，向 ArrayList 中ࢵ位置增&#x2F;删元素的情况较少时不୽响； </p>
+</li>
+<li><p>如果增&#x2F;删操作较多，可改⽤链表</p>
+</li>
+</ol>
+<h4 id="如何将ArrayList变成线程安全的？"><a href="#如何将ArrayList变成线程安全的？" class="headerlink" title="如何将ArrayList变成线程安全的？"></a>如何将ArrayList变成线程安全的？</h4><p>调用Collections工具类中的static List synchronizedList(List list)方法；</p>
 <h3 id="LinkedList集合底层原理"><a href="#LinkedList集合底层原理" class="headerlink" title="LinkedList集合底层原理"></a>LinkedList集合底层原理</h3><ul>
-<li>底层数据结构是双链表，查询慢，增删快，但是如果操作的是首尾元素，速度也是极快的。</li>
+<li>底层数据结构是双链表，<strong>查询慢，增删快，</strong>但是如果操作的是首尾元素，速度也是极快的。</li>
 <li>LinkedList本身多了很多直接操作首尾元素的特有API</li>
 </ul>
 <table>
@@ -367,10 +400,39 @@
 <td>删除最后一个元素</td>
 </tr>
 </tbody></table>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112139014.png" alt="image-20230411213952947"></p>
+<h4 id="ListIterator接口"><a href="#ListIterator接口" class="headerlink" title="ListIterator接口"></a>ListIterator接口</h4><p><strong>1</strong>、LinkedList.add方法只能将数据添加到链表末尾</p>
+<p><strong>2</strong>、如果要将对象添加到链表中间位置</p>
+<p>则需要使⽤ ListIterator 接⼝的 add ⽅法 </p>
+<ol>
+<li>ListIterator是Iterator的一个子接口</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112142251.png" alt="image-20230411214212193"></p>
+<ol start="3">
+<li><p>Iterator中remove方法</p>
+<ol>
+<li>调用next 之后，remove ⽅法删除的是迭代器左侧的元素（类似键盘的 backspace）</li>
+<li>调⽤ previous 之后，remove 删除的是迭代器右侧的元素</li>
+</ol>
+</li>
+<li><p>**ListIterator **中 <strong>add</strong> <strong>⽅法</strong></p>
+<ol>
+<li><p>调⽤ next 之后，在迭代器左侧添加⼀个元素</p>
+</li>
+<li><p>调⽤ previous 之后，add 是在迭代器右侧添加元素</p>
+</li>
+</ol>
+</li>
+</ol>
 <h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><ul>
-<li>HashSet集合底层采取 <strong>哈希表</strong>存储数据</li>
-<li>哈希表是一种对于增删改查数据性能都较好的结构</li>
-<li>哈希表的组成，在JDK8之前是数组+链表，JDK8之后是数组+链表+红黑树</li>
+<li><p><strong>无序、没有下标、不可重复</strong></p>
+</li>
+<li><p>HashSet集合底层采取 <strong>哈希表</strong>存储数据</p>
+</li>
+<li><p>哈希表是一种对于增删改查数据性能都较好的结构</p>
+</li>
+<li><p>哈希表的组成，在JDK8之前是数组+链表，JDK8之后是数组+链表+红黑树</p>
+</li>
 </ul>
 <h4 id="哈希值"><a href="#哈希值" class="headerlink" title="哈希值"></a>哈希值</h4><ul>
 <li>根据hashCode方法算出来的int类型的整数</li>
@@ -403,6 +465,7 @@
 </ul>
 <h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><ul>
 <li>可排序、不重复、无索引</li>
+<li><strong>Hashset为HashMap的key部分；TreeSet为TreeMap的key部分</strong></li>
 <li>底层基于红黑树实现排序，增删改查性能比较好</li>
 </ul>
 <h3 id="TreeSet集合自定义排序规则有几种方式"><a href="#TreeSet集合自定义排序规则有几种方式" class="headerlink" title="TreeSet集合自定义排序规则有几种方式"></a>TreeSet集合自定义排序规则有几种方式</h3><ol>
@@ -459,7 +522,16 @@
 </li>
 <li>TreeMap</li>
 </ul>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>Map<strong>第一种遍历方法</strong>：获取所有的键值</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><ul>
+<li>Map和Collection没有继承关系</li>
+<li>Map以(key,value)的形式存储数据：键值对<ul>
+<li>key和value存储的都是对象的内存地址（引用）</li>
+</ul>
+</li>
+</ul>
+<p>Map常见接口方法：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112159041.png" alt="image-20230411215935975"></p>
+<p>Map<strong>第一种遍历方法</strong>：获取所有的键值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; strings = map.keySet();</span><br></pre></td></tr></table></figure>
 
 <p>Map<strong>第二种遍历方法</strong>：获取所有的键值对对象</p>
@@ -474,7 +546,28 @@
 <li>如果键存储的是自定义对象，需要重写hashCode和equals方法</li>
 <li>如果值存储自定义对象，不需要重写hashCode和equals方法</li>
 </ul>
-<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>在编译阶段约束操作的数据类型，并进行检查</p>
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><ol>
+<li>jdk 1.5引入，之前都是使用Object[]</li>
+<li>使用Object[]的缺点（2个）</li>
+</ol>
+<ul>
+<li>获取一个值时必须进行强制类型转换</li>
+<li>调用一个方法前必须使用instanceof判断对象类型</li>
+</ul>
+<p>在编译阶段约束操作的数据类型，并进行检查</p>
+<p><strong>泛型的好处：</strong></p>
+<ol>
+<li>减少了强制类型转换的次数</li>
+</ol>
+<p>获取数据值更方便</p>
+<ol start="2">
+<li>类型安全</li>
+</ol>
+<p>调用方法时更安全</p>
+<ol start="3">
+<li>泛型旨在编译时期器作用</li>
+</ol>
+<p>运行阶段JVM看不见泛型类型（JVM只能看见对应的原始类型，因为进行了类型擦除）</p>
 <h2 id="泛型在集合中的应用"><a href="#泛型在集合中的应用" class="headerlink" title="泛型在集合中的应用"></a>泛型在集合中的应用</h2><ul>
 <li>如果没有给集合指定类型，默认认为所有的数据类型都是object类型</li>
 <li>此时可以往集合添加任意的数据类型，<strong>但这样做会带来一个坏处</strong>：在获取数据的时候，无法使用他的特有行为</li>
