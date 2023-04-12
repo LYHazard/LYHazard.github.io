@@ -18,6 +18,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112139014.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112142251.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304112159041.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304122153531.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303252201177.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303252202878.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303252203489.png">
@@ -27,7 +28,7 @@
 <meta property="og:image" content="http://example.com/ideaProject/img/04_schema%25E7%25BA%25A6%25E6%259D%259F%25E4%25BB%258B%25E7%25BB%258D.png">
 <meta property="og:image" content="http://example.com/ideaProject/img/05_schema%25E7%25BA%25A6%25E6%259D%259F%25E7%25BC%2596%25E5%2586%2599.png">
 <meta property="article:published_time" content="2023-01-03T09:46:20.000Z">
-<meta property="article:modified_time" content="2023-04-11T14:00:18.380Z">
+<meta property="article:modified_time" content="2023-04-12T14:09:17.898Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/Java_base/202304021429604.png">
@@ -534,18 +535,143 @@
 <p>Map<strong>第一种遍历方法</strong>：获取所有的键值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; strings = map.keySet();</span><br></pre></td></tr></table></figure>
 
+<p>特点：效率相对较低（因为还要根据 key 从哈希表中查找对应的 value）</p>
+<p><strong>⽅法1</strong>：通过 foreach 遍历 map.keySet()，取出对应的 value</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printMap1</span><span class="params">(Map&lt;Integer,String&gt; map)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(map.size==<span class="number">0</span>)&#123;</span><br><span class="line">        sout(<span class="string">&quot;the map is empty&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(Integer key : map.keyset())&#123;</span><br><span class="line">        sout(key + <span class="string">&quot;: &quot;</span> + map.getOrDefault(key,<span class="string">&quot; &quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：通过迭代器迭代 map.keySet()，来取出对应的 value</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printMap2</span><span class="params">(Map&lt;Integer,String&gt; map)</span>&#123;</span><br><span class="line">    Set&lt;Integer&gt; keySet = map.keySet();</span><br><span class="line">    Iterator&lt;Integer&gt; it = keySet.iterator();</span><br><span class="line">    <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">cntKey</span> <span class="operator">=</span> it.next();</span><br><span class="line">         sout(key + <span class="string">&quot;: &quot;</span> + map.getOrDefault(key,<span class="string">&quot; &quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Map<strong>第二种遍历方法</strong>：获取所有的键值对对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = map.entrySet();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = map.entrySet();</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<p>1.效率较高（直接从node中获取key，value）</p>
+<p>2.适用于大数据量map遍历</p>
+<p>⽅法3：调⽤ map.entrySet()，然后使⽤ foreach 遍历 entrySet </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printMap3</span><span class="params">(Map&lt;Integer,String&gt; map)</span>&#123;</span><br><span class="line">    Set&lt;Map.Entry&lt;Integer,String&gt;&gt; entry = map.entrySet();</span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer,String&gt; it : entry)&#123;</span><br><span class="line">        sout(it.getkey() + <span class="string">&quot;: &quot;</span> + it.getValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>⽅法4：调⽤ map.entrySet()，然后使⽤迭代器遍历 entrySet </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printMap4</span><span class="params">(Map&lt;Integer,String&gt; map)</span>&#123;</span><br><span class="line">   Set&lt;Map.Entry&lt;Integer,String&gt;&gt; entry = map.entrySet();</span><br><span class="line">    Iterator&lt;Map.Entry&lt;Integer,String&gt;&gt; it = entry.iterator();</span><br><span class="line">    <span class="keyword">if</span>(it.hasNext())&#123;</span><br><span class="line">        Map.Entry&lt;Integer,String&gt;node = it.next();</span><br><span class="line">        sout(node.getkey() + <span class="string">&quot;: &quot;</span> + node.getValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Map<strong>第三种遍历方法</strong>：lambda表达式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">map.forEach(<span class="keyword">new</span> <span class="title class_">BiConsumer</span>&lt;String, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accept</span><span class="params">(String s, String s2)</span> &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        System.out.println(s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><ul>
-<li>HashMap底层是哈希表结构的</li>
-<li>依赖hashCode方法和equals方法保证键的唯一</li>
+<li><p>HashMap底层是一个数组</p>
+</li>
+<li><p>数组中每个元素是⼀个单向链表（即，采⽤拉链法解决哈希冲突） </p>
+<p>单链表的节点每个节点是 Node&lt;K, V&gt; 类型（⻅下源码）</p>
+</li>
+<li><p>HashMap底层是哈希表结构的</p>
+</li>
+<li><p>同⼀个单链表中所有 Node 的 hash值不⼀定⼀样，但是他们对应的数组下标⼀定⼀样</p>
+<p>数组下标利⽤哈希函数&#x2F;哈希算法根据 hash值计算得到的</p>
+</li>
+<li><p>HashMap 是数组和单链表的结合体 </p>
+<ol>
+<li><p>数组查询效率⾼，但是增删元素效率较低 </p>
+</li>
+<li><p>单链表在随机增删元素⽅⾯效率较⾼，但是查询效率较低 </p>
+</li>
+<li><p>HashMap 将⼆者结合起来，充分它们各⾃的优点</p>
+</li>
+</ol>
+</li>
+<li><p>依赖hashCode方法和equals方法保证键的唯一</p>
+</li>
+<li><p>HashMap 特点</p>
+</li>
+</ul>
+<ol>
+<li><p>⽆序、不可重复 </p>
+</li>
+<li><p>⽆序：因为不⼀定挂在那个单链表上了</p>
+</li>
+<li><p>不可重复：通过重写equals方法保证的</p>
+</li>
+</ol>
+<ul>
 <li>如果键存储的是自定义对象，需要重写hashCode和equals方法</li>
 <li>如果值存储自定义对象，不需要重写hashCode和equals方法</li>
 </ul>
+<p>HashMap 部分源码解析</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304122153531.png" alt="image-20230412215314460"></p>
+<ul>
+<li><p>HashMap 默认初始化容量： 16 </p>
+<ul>
+<li>必须是 2 的次幂，这也是 jdk 官方推荐的</li>
+<li>这是因为达到散列均匀，为了提⾼ HashMap 集合的存取效率，所必须的</li>
+</ul>
+</li>
+<li><p>HashMap 默认加载因⼦：0.75 </p>
+<ul>
+<li>数组容量达到 3&#x2F;4 时，开始扩容</li>
+</ul>
+</li>
+<li><p>JDK 8 之后，对 HashMap 底层数据结构（单链表）进行了改进 </p>
+<ul>
+<li>如果单链表元素超过8个，则将单链表转变为红黑树； </li>
+<li>如果红黑树树节点数量⼩于6时，会将红黑树重新变为单链表。</li>
+</ul>
+</li>
+</ul>
+<p>这种方式也是为了提高检索效率，二叉树的检索会再次缩小扫描范围。提高效率</p>
+<hr>
+<h4 id="put（）方法原理"><a href="#put（）方法原理" class="headerlink" title="put（）方法原理"></a>put（）方法原理</h4><ol>
+<li><p>先将 key, value 封装到 Node 对象中</p>
+</li>
+<li><p>底层会调⽤ key 的 hashCode() ⽅法得出 hash 值</p>
+</li>
+<li><p>通过哈希函数&#x2F;哈希算法，将 hash 值转换为数组的下标</p>
+</li>
+</ol>
+<ul>
+<li>如果下标位置上没有任何元素，就把 Node 添加到这个位置上； </li>
+<li>如果下标位置上有单链表，此时会将当前 Node 中的 key 与链表上每⼀个节点中的key进行equals比较<ul>
+<li>如果所有的 equals ⽅法返回都是 false，那么这个新节点 Node 将被添加到链表的末尾； </li>
+<li>如果其中有⼀个 equals 返回了 true，那么链表中对应的这个节点的 value 将会被新节点 Node 的 value 覆盖。（保证了不可重复）</li>
+</ul>
+</li>
+</ul>
+<p>注：1. HashMap 中允许 key 和 value 为 null，但是只能有⼀个（不可重复）！ </p>
+<ol start="2">
+<li>HashTable 中 key 和 value 都不允许为 null。</li>
+</ol>
+<hr>
+<h4 id="get（）方法原理"><a href="#get（）方法原理" class="headerlink" title="get（）方法原理"></a>get（）方法原理</h4><ol>
+<li>先调⽤ key 的 hashCode() ⽅法得出 hash 值 </li>
+<li>通过哈希函数&#x2F;哈希算法，将 hash 值转换为数组的下标</li>
+<li>通过数组下标ள速定位到数组中的某个位置：</li>
+</ol>
+<ul>
+<li><p>如果这个位置上什么也没有（没有链表），则返回 null； </p>
+</li>
+<li><p>如果这个位置上有单链表，此时会将当前 Node 中的 key 与链表上每⼀个节点中的key 进⾏ equals ⽐较。</p>
+<ul>
+<li><p>如果所有的 equals ⽅法返回都是 false，那么 get ⽅法返回 null； </p>
+</li>
+<li><p>如果其中有⼀个 equals 返回了 true，那么这个节点的 value 便是我们要找的</p>
+<p>value，此时 get ⽅法最终返回这个要找的 value。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>注：1. 放在 HashMap 中 key 的元素（或者放在 HashSet 中的元素）需要同时重写 hashCode()和 equals() ⽅法！！！ </p>
+<hr>
+<h4 id="同时重写hashCode-和equals-方法"><a href="#同时重写hashCode-和equals-方法" class="headerlink" title="同时重写hashCode()和equals()方法"></a>同时重写hashCode()和equals()方法</h4><ul>
+<li><p>重写 hashCode() ⽅法时要达到散列分布均匀！！！ </p>
+<ul>
+<li><p>如果 hashCode() ⽅法返回⼀个固定的值，那么 HashMap 底层则变成了⼀个单链</p>
+<p>表； </p>
+</li>
+<li><p>如果 hashCode() ⽅法所有返回的值都不同，此时 HashMap 底层则变成了⼀个数</p>
+<p>组。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>这两种情况称之为，散列分布不均匀۰ equals 和 hashCode⽅法⼀定要同时重写（直接⽤ IDE ⽣成就⾏）</p>
 <h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><ol>
 <li>jdk 1.5引入，之前都是使用Object[]</li>
 <li>使用Object[]的缺点（2个）</li>
