@@ -57,8 +57,16 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/SpringBootWeb/202303281110226.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/SpringBootWeb/202303281110184.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/SpringBootWeb/202303281110354.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152011176.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152012099.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152012790.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152013400.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152013474.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152014114.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152014500.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152015598.png">
 <meta property="article:published_time" content="2023-03-27T14:48:55.000Z">
-<meta property="article:modified_time" content="2023-03-28T03:11:02.863Z">
+<meta property="article:modified_time" content="2023-04-15T12:17:06.060Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/202303272252532.png">
@@ -740,6 +748,140 @@
 <li>@Autowired 默认是按照类型注入，而@Resource是按照名称注入</li>
 </ul>
 </blockquote>
+<h2 id="4-配置文件"><a href="#4-配置文件" class="headerlink" title="4.配置文件"></a>4.配置文件</h2><h3 id="4-1-参数配置化"><a href="#4-1-参数配置化" class="headerlink" title="4.1  参数配置化"></a>4.1  参数配置化</h3><p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152011176.png" alt="image-20230415201112086"></p>
+<p>在我们之前编写的程序中进行文件上传时，需要调用AliOSSUtils工具类，将文件上传到阿里云OSS对象存储服务当中。而在调用工具类进行文件上传时，需要一些参数：</p>
+<ul>
+<li>endpoint       &#x2F;&#x2F;阿里云OSS域名</li>
+<li>accessKeyID    &#x2F;&#x2F;用户身份ID</li>
+<li>accessKeySecret   &#x2F;&#x2F;用户密钥</li>
+<li>bucketName      &#x2F;&#x2F;存储空间的名字</li>
+</ul>
+<p>关于以上的这些阿里云相关配置信息，我们是直接写死在java代码中了(硬编码)，如果我们在做项目时每涉及到一个第三方技术服务，就将其参数硬编码，那么在Java程序中会存在两个问题：</p>
+<ol>
+<li>如果这些参数发生变化了，就必须在源程序代码中改动这些参数，然后需要重新进行代码的编译，将Java代码编译成class字节码文件再重新运行程序。（比较繁琐）</li>
+<li>如果我们开发的是一个真实的企业级项目， Java类可能会有很多，如果将这些参数分散的定义在各个Java类当中，我们要修改一个参数值，我们就需要在众多的Java代码当中来定位到对应的位置，再来修改参数，修改完毕之后再重新编译再运行。（参数配置过于分散，是不方便集中的管理和维护）</li>
+</ol>
+<p>为了解决以上分析的问题，我们可以将参数配置在配置文件中。如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#自定义的阿里云OSS配置信息</span></span><br><span class="line"><span class="attr">aliyun.oss.endpoint</span>=<span class="string">https://oss-cn-hangzhou.aliyuncs.com</span></span><br><span class="line"><span class="attr">aliyun.oss.accessKeyId</span>=<span class="string">LTAI4GCH1vX6DKqJWxd6nEuW</span></span><br><span class="line"><span class="attr">aliyun.oss.accessKeySecret</span>=<span class="string">yBshYweHOpqDuhCArrVHwIiBKpyqSL</span></span><br><span class="line"><span class="attr">aliyun.oss.bucketName</span>=<span class="string">web-tlias</span></span><br></pre></td></tr></table></figure>
+
+<p>在将阿里云OSS配置参数交给properties配置文件来管理之后，我们的AliOSSUtils工具类就变为以下形式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSUtils</span> &#123;</span><br><span class="line">    <span class="comment">/*以下4个参数没有指定值（默认值：null）*/</span></span><br><span class="line">    <span class="keyword">private</span> String endpoint;</span><br><span class="line">    <span class="keyword">private</span> String accessKeyId;</span><br><span class="line">    <span class="keyword">private</span> String accessKeySecret;</span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//省略其他代码...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>而此时如果直接调用AliOSSUtils类当中的upload方法进行文件上传时，这4项参数全部为null，原因是因为并没有给它赋值。</p>
+<p>此时我们是不是需要将配置文件当中所配置的属性值读取出来，并分别赋值给AliOSSUtils工具类当中的各个属性呢？那应该怎么做呢？</p>
+</blockquote>
+<p>因为application.properties是springboot项目默认的配置文件，所以springboot程序在启动时会默认读取application.properties配置文件，而我们可以使用一个现成的注解：@Value，获取配置文件中的数据。</p>
+<p>@Value 注解通常用于外部配置的属性注入，具体用法为： @Value(“${配置文件中的key}”)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSUtils</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.endpoint&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String endpoint;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.accessKeyId&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeyId;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.accessKeySecret&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeySecret;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;aliyun.oss.bucketName&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line"> 	</span><br><span class="line"> 	<span class="comment">//省略其他代码...</span></span><br><span class="line"> &#125;   </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152012099.png" alt="image-20230415201209034"></p>
+<h3 id="4-2-yml配置文件"><a href="#4-2-yml配置文件" class="headerlink" title="4.2 yml配置文件"></a>4.2 yml配置文件</h3><p>前面我们一直使用springboot项目创建完毕后自带的application.properties进行属性的配置，那其实呢，在springboot项目当中是支持多种配置方式的，除了支持properties配置文件以外，还支持另外一种类型的配置文件，就是我们接下来要讲解的yml格式的配置文件。</p>
+<ul>
+<li><p>application.properties</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="attr">server.address</span>=<span class="string">127.0.0.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>application.yml </p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>application.yaml </p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>yml 格式的配置文件，后缀名有两种：</p>
+<ul>
+<li>yml （推荐）</li>
+<li>yaml</li>
+</ul>
+</blockquote>
+<p>常见配置文件格式对比：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152012790.png" alt="image-20230415201242730"></p>
+<p>我们可以看到配置同样的数据信息，yml格式的数据有以下特点：</p>
+<ul>
+<li>容易阅读</li>
+<li>容易与脚本语言交互</li>
+<li>以数据为核心，重数据轻格式</li>
+</ul>
+<p>简单的了解过springboot所支持的配置文件，以及不同类型配置文件之间的优缺点之后，接下来我们就来了解下yml配置文件的基本语法：</p>
+<ul>
+<li>大小写敏感</li>
+<li>数值前边必须有空格，作为分隔符</li>
+<li>使用缩进表示层级关系，缩进时，不允许使用Tab键，只能用空格（idea中会自动将Tab转换为空格）</li>
+<li>缩进的空格数目不重要，只要相同层级的元素左侧对齐即可</li>
+<li><code>#</code>表示注释，从这个字符一直到行尾，都会被解析器忽略</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152013400.png" alt="image-20230415201301357"></p>
+<p>了解完yml格式配置文件的基本语法之后，接下来我们再来看下yml文件中常见的数据格式。在这里我们主要介绍最为常见的两类：</p>
+<ol>
+<li>定义对象或Map集合</li>
+<li>定义数组、list或set集合</li>
+</ol>
+<p>对象&#x2F;Map集合</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">zhangsan</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>数组&#x2F;List&#x2F;Set集合</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hobby:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">java</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">game</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">sport</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>熟悉完了yml文件的基本语法后，我们修改下之前案例中使用的配置文件，变更为application.yml配置方式：</p>
+<ol>
+<li>修改application.properties名字为：<code>_application.properties</code>（名字随便更换，只要加载不到即可）</li>
+<li>创建新的配置文件： <code>application.yml</code></li>
+</ol>
+<p>原有application.properties文件：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152013474.png" alt="image-20230415201330420"></p>
+<p>新建的application.yml文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/tlias</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">1234</span></span><br><span class="line">  <span class="attr">servlet:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">      <span class="attr">max-file-size:</span> <span class="string">10MB</span></span><br><span class="line">      <span class="attr">max-request-size:</span> <span class="string">100MB</span></span><br><span class="line">      </span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br><span class="line">    <span class="attr">map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br><span class="line">	</span><br><span class="line"><span class="attr">aliyun:</span></span><br><span class="line">  <span class="attr">oss:</span></span><br><span class="line">    <span class="attr">endpoint:</span> <span class="string">https://oss-cn-hangzhou.aliyuncs.com</span></span><br><span class="line">    <span class="attr">accessKeyId:</span> <span class="string">LTAI4GCH1vX6DKqJWxd6nEuW</span></span><br><span class="line">    <span class="attr">accessKeySecret:</span> <span class="string">yBshYweHOpqDuhCArrVHwIiBKpyqSL</span></span><br><span class="line">    <span class="attr">bucketName:</span> <span class="string">web-397</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-ConfigurationProperties"><a href="#4-3-ConfigurationProperties" class="headerlink" title="4.3 @ConfigurationProperties"></a>4.3 @ConfigurationProperties</h3><p>讲解完了yml配置文件之后，最后再来介绍一个注解<code>@ConfigurationProperties</code>。在介绍注解之前，我们先来看一个场景，分析下代码当中可能存在的问题：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152014114.png" alt="image-20230415201400057"></p>
+<p>我们在application.properties或者application.yml中配置了阿里云OSS的四项参数之后，如果java程序中需要这四项参数数据，我们直接通过@Value注解来进行注入。这种方式本身没有什么问题问题，但是如果说需要注入的属性较多(例：需要20多个参数数据)，我们写起来就会比较繁琐。</p>
+<p>那么有没有一种方式可以简化这些配置参数的注入呢？答案是肯定有，在Spring中给我们提供了一种简化方式，可以直接将配置文件中配置项的值自动的注入到对象的属性中。</p>
+<p>Spring提供的简化方式套路：</p>
+<ol>
+<li><p>需要创建一个实现类，且实体类中的属性名和配置文件当中key的名字必须要一致</p>
+<blockquote>
+<p>比如：配置文件当中叫endpoints，实体类当中的属性也得叫endpoints，另外实体类当中的属性还需要提供 getter &#x2F; setter方法</p>
+</blockquote>
+</li>
+<li><p>需要将实体类交给Spring的IOC容器管理，成为IOC容器当中的bean对象</p>
+</li>
+<li><p>在实体类上添加<code>@ConfigurationProperties</code>注解，并通过perfect属性来指定配置参数项的前缀</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152014500.png" alt="image-20230415201446445"></p>
+<p>实体类：AliOSSProperties</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*阿里云OSS相关配置*/</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;aliyun.oss&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSProperties</span> &#123;</span><br><span class="line">    <span class="comment">//区域</span></span><br><span class="line">    <span class="keyword">private</span> String endpoint;</span><br><span class="line">    <span class="comment">//身份ID</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeyId ;</span><br><span class="line">    <span class="comment">//身份密钥</span></span><br><span class="line">    <span class="keyword">private</span> String accessKeySecret ;</span><br><span class="line">    <span class="comment">//存储空间</span></span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>AliOSSUtils工具类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//当前类对象由Spring创建和管理</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AliOSSUtils</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入配置参数实体类对象</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AliOSSProperties aliOSSProperties;</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 实现上传图片到OSS</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(MultipartFile multipartFile)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 获取上传的文件的输入流</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> multipartFile.getInputStream();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 避免文件覆盖</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">originalFilename</span> <span class="operator">=</span> multipartFile.getOriginalFilename();</span><br><span class="line">        <span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//上传文件到 OSS</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(aliOSSProperties.getEndpoint(),</span><br><span class="line">                aliOSSProperties.getAccessKeyId(), aliOSSProperties.getAccessKeySecret());</span><br><span class="line">        ossClient.putObject(aliOSSProperties.getBucketName(), fileName, inputStream);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//文件访问路径</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span>aliOSSProperties.getEndpoint().split(<span class="string">&quot;//&quot;</span>)[<span class="number">0</span>] + <span class="string">&quot;//&quot;</span> + aliOSSProperties.getBucketName() + <span class="string">&quot;.&quot;</span> + aliOSSProperties.getEndpoint().split(<span class="string">&quot;//&quot;</span>)[<span class="number">1</span>] + <span class="string">&quot;/&quot;</span> + fileName;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭ossClient</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">        <span class="keyword">return</span> url;<span class="comment">// 把上传到oss的路径返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>在我们添加上注解后，会发现idea窗口上面出现一个红色警告：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/LYHazard/blog.img/javaBase/202304152015598.png" alt="image-20230415201506559"></p>
+<p>这个警告提示是告知我们还需要引入一个依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当我们在pom.xml文件当中配置了这项依赖之后，我们重新启动服务，大家就会看到在properties或者是yml配置文件当中，就会提示阿里云 OSS 相关的配置项。所以这项依赖它的作用就是会自动的识别被<code>@Configuration Properties</code>注解标识的bean对象。</p>
+<blockquote>
+<p>刚才的红色警告，已经变成了一个灰色的提示，提示我们需要重新运行springboot服务</p>
+</blockquote>
+<p>@ConfigurationProperties注解我们已经介绍完了，接下来我们就来区分一下@ConfigurationProperties注解以及我们前面所介绍的另外一个@Value注解：</p>
+<p>相同点：都是用来注入外部配置的属性的。</p>
+<p>不同点：</p>
+<ul>
+<li><p>@Value注解只能一个一个的进行外部属性的注入。</p>
+</li>
+<li><p>@ConfigurationProperties可以批量的将外部的属性配置注入到bean对象的属性中。</p>
+</li>
+</ul>
+<p>如果要注入的属性非常的多，并且还想做到复用，就可以定义这么一个bean对象。通过 configuration properties 批量的将外部的属性配置直接注入到 bin 对象的属性当中。在其他的类当中，我要想获取到注入进来的属性，我直接注入 bin 对象，然后调用 get 方法，就可以获取到对应的属性值了</p>
 
       
     </div>
@@ -818,6 +960,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/15/Springboot%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8/">Springboot过滤器、拦截器</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/03/PicGo%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">PicGo图床搭建</a>
           </li>
         
@@ -831,10 +977,6 @@
         
           <li>
             <a href="/2023/03/28/MySQL/">MySQL</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/27/SpringBootWeb%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/">SpringBootWeb请求响应</a>
           </li>
         
       </ul>
